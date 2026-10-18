@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scenario Question Trainer — CIPFA Audit &amp; Assurance Q9–Q12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--surface:#fff;--surface-2:#f1f5f9;--text:#0f172a;--text-2:#64748b;--border:#e2e8f0;
+ --accent:#6366f1;--accent-2:#8b5cf6;--accent-bg:#eef2ff;--ok:#059669;--ok-bg:#ecfdf5;--bad:#dc2626;--bad-bg:#fef2f2;
+ --warn:#b45309;--warn-bg:#fffbeb;--r:16px;--shadow:0 1px 3px rgba(15,23,42,.06),0 4px 16px rgba(15,23,42,.05)}
+[data-theme="dark"]{--bg:#0f172a;--surface:#1e293b;--surface-2:#334155;--text:#f1f5f9;--text-2:#94a3b8;--border:#334155;
+ --accent:#818cf8;--accent-2:#a78bfa;--accent-bg:#312e81;--ok:#34d399;--ok-bg:#064e3b;--bad:#f87171;--bad-bg:#7f1d1d;
+ --warn:#fbbf24;--warn-bg:#78350f;--shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+button,select,textarea{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40}
+.mast{max-width:900px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.1rem;letter-spacing:-.02em;line-height:1.2}
+.brand span{display:block;font-size:.68rem;font-weight:700;color:var(--text-2);letter-spacing:.06em;text-transform:uppercase}
+.spacer{flex:1}
+.timer{font-weight:800;font-size:1.05rem;padding:5px 12px;border-radius:999px;background:var(--surface-2);font-variant-numeric:tabular-nums}
+.timer.low{background:var(--bad-bg);color:var(--bad)}
+.wrap{max-width:900px;margin:0 auto;padding:22px 20px 60px}
+.btn{padding:10px 18px;border-radius:12px;font-weight:700;font-size:.9rem;background:var(--surface);border:1.5px solid var(--border);box-shadow:var(--shadow);transition:all .15s}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent}
+.btn-primary:hover{opacity:.92;border-color:transparent}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-sm{padding:6px 12px;font-size:.8rem;border-radius:9px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:22px;margin-bottom:16px}
+h1{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:6px} h2{font-size:1.15rem} h3{font-size:.98rem;margin-bottom:6px}
+.lede{color:var(--text-2);font-size:.95rem;margin-bottom:18px;max-width:64ch} .lede b{color:var(--text)}
+.small{font-size:.85rem;color:var(--text-2);margin-top:10px}
+.howgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:8px}
+.howgrid div{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:.88rem}
+.howgrid span{display:block;color:var(--text-2);font-size:.82rem;margin-top:3px}
+.grp{margin-bottom:14px}
+.grp-h{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text-2);margin:0 0 7px 2px}
+.case-btn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 16px;margin-bottom:8px;border:1.5px solid var(--border);
+ border-radius:12px;background:var(--surface);box-shadow:var(--shadow);transition:all .14s}
+.case-btn:hover{border-color:var(--accent)} .case-btn.done{border-color:var(--ok);background:var(--ok-bg)}
+.cb-t{flex:1} .cb-t span{display:block;font-size:.8rem;color:var(--text-2)}
+.cb-s{font-size:.8rem;font-weight:800;color:var(--accent);white-space:nowrap}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.mode{text-align:left;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:17px;box-shadow:var(--shadow);transition:all .15s}
+.mode:hover{border-color:var(--accent);transform:translateY(-2px)} .mode p{font-size:.85rem;color:var(--text-2);margin-top:4px}
+.scen{font-size:.93rem} .scen p{margin-bottom:9px}
+.sc-list{margin:6px 0 4px 20px} .sc-list li{margin-bottom:7px}
+.scen-mini summary{cursor:pointer;font-weight:800;font-size:.9rem;list-style:none}
+.scen-mini summary::-webkit-details-marker{display:none}
+.scen-mini[open] summary{margin-bottom:10px} .scen-mini{font-size:.9rem;padding:14px 18px}
+.qhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:10px}
+.qnum{font-weight:800;font-size:.85rem;background:var(--accent);color:#fff;padding:4px 12px;border-radius:999px}
+.tag{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--text-2)}
+.marks{margin-left:auto;font-size:.8rem;font-weight:800;color:var(--text-2)}
+.progress{height:6px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-bottom:14px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .3s}
+.stem{font-size:1rem;margin-bottom:14px}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;margin-bottom:9px;cursor:pointer;background:var(--surface)}
+.opt:hover{border-color:var(--accent)} .opt.sel{border-color:var(--accent);background:var(--accent-bg)}
+.opt.correct{border-color:var(--ok);background:var(--ok-bg)} .opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.missed{border-color:var(--ok);border-style:dashed} .opt.locked{cursor:default}
+.opt input{margin-top:4px;accent-color:var(--accent);width:17px;height:17px;flex-shrink:0}
+.opt-body{flex:1} .why{font-size:.84rem;color:var(--text-2);margin-top:6px;line-height:1.5}
+.mrow{border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:9px}
+.mrow.ok{border-color:var(--ok);background:var(--ok-bg)} .mrow.bad{border-color:var(--bad);background:var(--bad-bg)}
+.mrow-t{font-weight:700;font-size:.92rem;margin-bottom:7px}
+.mrow select{width:100%;padding:9px 10px;border:1.5px solid var(--border);border-radius:9px;background:var(--bg);font-size:.88rem}
+.req{background:var(--accent-bg);border-left:4px solid var(--accent);padding:12px 15px;border-radius:0 12px 12px 0;margin-bottom:12px;font-size:.93rem}
+textarea{width:100%;min-height:220px;padding:13px;border:1.5px solid var(--border);border-radius:12px;font-size:.92rem;background:var(--bg);resize:vertical;line-height:1.6}
+.mark-h{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin:16px 0 9px}
+.mp{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;margin-bottom:7px;cursor:pointer;font-size:.88rem}
+.mp.on{background:var(--ok-bg);border-color:var(--ok)} .mp input{margin-top:3px;accent-color:var(--ok);width:17px;height:17px;flex-shrink:0}
+.pm{display:inline-block;font-size:.68rem;font-weight:800;background:var(--surface-2);color:var(--text-2);padding:2px 7px;border-radius:999px;margin-right:7px}
+.fb{margin-top:14px;padding:13px 15px;border-radius:12px;font-size:.9rem;border-left:4px solid}
+.fb.good{background:var(--ok-bg);border-color:var(--ok)} .fb.part{background:var(--warn-bg);border-color:var(--warn)} .fb.poor{background:var(--bad-bg);border-color:var(--bad)}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);padding:11px 14px;border-radius:0 10px 10px 0;font-size:.86rem;margin-top:10px}
+.actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:11px;margin:14px 0}
+.stat{background:var(--surface-2);border-radius:12px;padding:13px;text-align:center}
+.stat b{display:block;font-size:1.4rem;font-weight:800} .stat span{font-size:.7rem;color:var(--text-2);text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+.hide{display:none!important}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--text);color:var(--bg);padding:11px 20px;border-radius:12px;font-weight:700;font-size:.87rem;transition:transform .28s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:560px){.wrap{padding:16px 14px 50px}.card{padding:17px}}
+/* ===== learn-from-scratch (shared, Gym house style) ===== */
+#lm{max-width:860px;margin:0 auto}
+#lm h1{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:6px}
+#lm h2{font-size:1.2rem;margin-bottom:10px}
+#lm h3{font-size:.98rem;margin-bottom:6px}
+.lm-lede{color:var(--text-2);font-size:.95rem;margin-bottom:16px;max-width:64ch;line-height:1.6}
+.lm-lede b{color:var(--text)}
+.lm-small{font-size:.85rem;color:var(--text-2);margin:-6px 0 16px}
+.lm-progress{height:6px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-bottom:16px}
+.lm-progress div{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .3s}
+.lm-pill{display:inline-block;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+  padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--text-2);margin-right:5px}
+.lm-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px;margin-bottom:14px}
+.lm-body p{margin-bottom:10px;line-height:1.65}
+.lm-banner{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:17px 19px;margin-bottom:18px;
+  border-radius:16px;border:2px solid var(--accent);background:var(--accent-bg);box-shadow:var(--shadow);transition:transform .15s;
+  font-family:inherit;color:var(--text);cursor:pointer}
+.lm-banner:hover{transform:translateY(-2px)}
+.lm-banner-icon{font-size:1.8rem;flex-shrink:0}
+.lm-banner-body{flex:1;font-size:.95rem;line-height:1.45}
+.lm-banner-body span{display:block;font-size:.84rem;color:var(--text-2);margin-top:3px}
+.lm-banner-go{font-weight:800;font-size:.85rem;color:var(--accent);white-space:nowrap}
+.lm-course,.lm-stage{display:flex;width:100%;text-align:left;border:1.5px solid var(--border);background:var(--surface);
+  box-shadow:var(--shadow);transition:all .14s;font-family:inherit;color:var(--text);cursor:pointer}
+.lm-course{align-items:flex-start;gap:14px;padding:16px 18px;margin-bottom:11px;border-radius:16px}
+.lm-course:hover,.lm-stage:hover{border-color:var(--accent)}
+.lm-course.done,.lm-stage.done{background:var(--ok-bg);border-color:var(--ok)}
+.lm-ci{font-size:1.7rem;flex-shrink:0;line-height:1.2}
+.lm-cb{flex:1;font-size:.97rem;line-height:1.45}
+.lm-cb>span{display:block;font-size:.84rem;color:var(--text-2);margin-top:3px}
+.lm-tags{display:flex!important;gap:4px;flex-wrap:wrap;margin-top:8px!important}
+.lm-cp{font-weight:800;font-size:.84rem;color:var(--accent);white-space:nowrap;padding-top:3px}
+.lm-course.done .lm-cp{color:var(--ok)}
+.lm-stage{align-items:center;gap:13px;padding:13px 16px;margin-bottom:9px;border-radius:12px}
+.lm-stage.next{border-color:var(--accent);border-width:2px}
+.lm-num{min-width:28px;height:28px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.82rem;color:var(--text-2)}
+.lm-stage.done .lm-num{background:var(--ok);color:#fff}
+.lm-stage.next .lm-num{background:var(--accent);color:#fff}
+.lm-icon{font-size:1.25rem}
+.lm-name{flex:1;font-weight:700}
+.lm-go{font-size:.8rem;font-weight:800;color:var(--accent)}
+.lm-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.lm-qnum{font-weight:800;font-size:.85rem;background:var(--accent);color:#fff;padding:4px 12px;border-radius:999px}
+.lm-count{margin-left:auto;font-size:.8rem;font-weight:800;color:var(--text-2)}
+.lm-formula{background:var(--surface-2);border-left:4px solid var(--accent);padding:10px 14px;border-radius:0 10px 10px 0;margin:10px 0 6px;font-size:.93rem;line-height:1.55}
+.lm-sub{font-size:.86rem;color:var(--text-2);margin:-2px 0 12px 4px;line-height:1.55}
+.lm-tip{background:var(--warn-bg);border-left:4px solid var(--warn);padding:11px 14px;border-radius:0 10px 10px 0;font-size:.88rem;margin:14px 0 4px;line-height:1.55}
+.lm-tip.good{background:var(--ok-bg);border-left-color:var(--ok)}
+.lm-tbl{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0 14px}
+.lm-tbl th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-2);padding:7px 8px;border-bottom:2px solid var(--border)}
+.lm-tbl td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.lm-tbl.num td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.lm-tbl tr.t td{border-top:1.5px solid var(--text);font-weight:800}
+.lm-work{background:var(--surface-2);padding:13px 15px;border-radius:10px;font-size:.9rem;line-height:1.95;font-variant-numeric:tabular-nums;margin:8px 0}
+.lm-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dotted var(--border)}
+.lm-row label{flex:1;font-weight:700;font-size:.9rem}
+.lm-row input{width:130px;padding:8px 11px;border:1.5px solid var(--border);border-radius:9px;font-family:inherit;font-size:.95rem;
+  text-align:right;background:var(--bg);color:var(--text);font-variant-numeric:tabular-nums}
+.lm-row.ok input{border-color:var(--ok);background:var(--ok-bg)}
+.lm-row.bad input{border-color:var(--bad);background:var(--bad-bg)}
+.lm-mk{width:20px;font-weight:800;text-align:center}
+.lm-mk.ok,.lm-okc{color:var(--ok)}.lm-mk.bad{color:var(--bad)}
+.lm-fb{font-size:.84rem;color:var(--text-2);padding:6px 2px 10px;line-height:1.55}
+.lm-stem{font-size:1rem;margin-bottom:14px;line-height:1.65}
+.lm-opt{padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;margin-bottom:9px;cursor:pointer;background:var(--surface);transition:all .13s}
+.lm-opt:hover{border-color:var(--accent);background:var(--accent-bg)}
+.lm-opt.locked{cursor:default}
+.lm-opt.correct{border-color:var(--ok);background:var(--ok-bg)}
+.lm-opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.lm-why{font-size:.84rem;color:var(--text-2);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.lm-res{margin-top:14px;padding:13px 15px;border-radius:12px;font-size:.9rem;border-left:4px solid}
+.lm-res.good{background:var(--ok-bg);border-color:var(--ok)}
+.lm-res.part{background:var(--warn-bg);border-color:var(--warn)}
+.lm-res.poor{background:var(--bad-bg);border-color:var(--bad)}
+.lm-exp{margin-top:7px;padding-top:7px;border-top:1px solid rgba(128,128,128,.25)}
+.lm-sort{border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:9px}
+.lm-sort.ok{border-color:var(--ok);background:var(--ok-bg)}
+.lm-sort.bad{border-color:var(--bad);background:var(--bad-bg)}
+.lm-sort-t{font-size:.92rem;margin-bottom:9px;line-height:1.5}
+.lm-chips{display:flex;flex-wrap:wrap;gap:6px}
+.lm-chip{padding:5px 12px;border-radius:999px;border:1.5px solid var(--border);background:var(--surface);color:var(--text);
+  font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+.lm-chip:hover{border-color:var(--accent)}
+.lm-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.lm-chip.right{background:var(--ok);border-color:var(--ok);color:#fff}
+.lm-chip.wrongc{background:var(--bad);border-color:var(--bad);color:#fff;text-decoration:line-through}
+.lm-chip:disabled{cursor:default}
+.lm-sort-why{font-size:.84rem;color:var(--text-2);margin-top:9px;padding-top:8px;border-top:1px solid var(--border);line-height:1.55}
+.lm-actions{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap;align-items:center}
+.lm-wait{font-size:.82rem;color:var(--text-2)}
+@media(max-width:560px){.lm-card{padding:17px}.lm-row input{width:105px}}
+
+</style>
+</head>
+<body>
+<header><div class="mast">
+ <div class="brand">Scenario Question Trainer<span>Audit &amp; Assurance · Q9–Q12</span></div>
+ <div class="spacer"></div>
+ <div class="timer hide" id="timer">0:00</div>
+ <button class="btn btn-sm" id="themeBtn" onclick="toggleTheme()">🌙</button>
+ <button class="btn btn-sm" onclick="renderHome()">Menu</button>
+</div></header>
+<div class="wrap">
+ <div id="home"></div>
+ <div id="lm" class="hide"></div>
+ <div id="case" class="hide"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+/* ===================== LEARN FROM SCRATCH (shared engine) =====================
+   Screens: explain · example · calc (fresh numbers) · mcq · sort.
+   Configured per app with lmInit({...}). All names prefixed lm to avoid clashes. */
+const LM = {cfg:null, L:null};
+function lmInit(cfg){ LM.cfg = cfg; }
+function lmShuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function lmProg(){ const s=LM.cfg.store(); s.learn = s.learn || {}; return s.learn; }
+function lmDone(c){ const p=lmProg(); return c.stages.filter(s=>p[s.id]).length; }
+function lmAll(){ return LM.cfg.courses.reduce((a,c)=>a+c.stages.length,0); }
+function lmAllDone(){ return LM.cfg.courses.reduce((a,c)=>a+lmDone(c),0); }
+function lmEsc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function lmShow(){
+  LM.cfg.hide.forEach(id=>{ const e=document.getElementById(id); if(e) e.classList.add('hide'); });
+  const r = document.getElementById('lm'); r.classList.remove('hide');
+  return r;
+}
+function lmLeave(){ const r=document.getElementById('lm'); if(r) r.classList.add('hide'); LM.L = null; }
+function lmBanner(){
+  const d = lmAllDone(), t = lmAll();
+  return `<button class="lm-banner" onclick="lmHub()">
+    <span class="lm-banner-icon">📘</span>
+    <span class="lm-banner-body"><b>${LM.cfg.bannerTitle}</b><span>${LM.cfg.bannerText}</span></span>
+    <span class="lm-banner-go">${d ? d+' / '+t+' stages' : 'Begin →'}</span></button>`;
+}
+
+function lmHub(){
+  const r = lmShow(); LM.L = null;
+  const d = lmAllDone(), t = lmAll();
+  r.innerHTML = `
+   <button class="btn btn-sm" onclick="lmLeave();LM.cfg.home()" style="margin-bottom:14px">← Back to the drill</button>
+   <h1>Learn from scratch</h1>
+   <p class="lm-lede">${LM.cfg.hubIntro}</p>
+   <div class="lm-progress"><div style="width:${t?d/t*100:0}%"></div></div>
+   <p class="lm-small">${d} of ${t} stages complete</p>
+   ${LM.cfg.courses.map((c,i)=>{ const n=lmDone(c), full=n===c.stages.length;
+     return `<button class="lm-course ${full?'done':''}" onclick="lmCourse(${i})">
+       <span class="lm-ci">${c.icon}</span>
+       <span class="lm-cb"><b>${c.title}</b><span>${c.blurb}</span>
+         <span class="lm-tags"><span class="lm-pill">${c.wb}</span><span class="lm-pill">${c.stages.length} stage${c.stages.length>1?'s':''}</span></span></span>
+       <span class="lm-cp">${full?'✓ Done':(n?n+' / '+c.stages.length:'Start →')}</span></button>`; }).join('')}`;
+  window.scrollTo(0,0);
+}
+
+function lmCourse(ci){
+  const r = lmShow(); LM.L = null;
+  const c = LM.cfg.courses[ci], p = lmProg(), done = lmDone(c);
+  const next = c.stages.findIndex(s=>!p[s.id]);
+  r.innerHTML = `
+   <button class="btn btn-sm" onclick="lmHub()" style="margin-bottom:14px">← All courses</button>
+   <h1>${c.icon} ${c.title}</h1>
+   <p class="lm-lede">${c.blurb} <span class="lm-pill">${c.wb}</span></p>
+   <div class="lm-progress"><div style="width:${done/c.stages.length*100}%"></div></div>
+   <p class="lm-small">${done} of ${c.stages.length} stages complete</p>
+   ${c.stages.map((s,i)=>`
+     <button class="lm-stage ${p[s.id]?'done':''} ${i===next?'next':''}" onclick="lmStart(${ci},${i})">
+       <span class="lm-num">${p[s.id]?'✓':i+1}</span><span class="lm-icon">${s.icon}</span>
+       <span class="lm-name">${s.title}</span>
+       <span class="lm-go">${p[s.id]?'Review':(i===next?'Start →':'Open')}</span></button>`).join('')}
+   <div class="lm-card" style="margin-top:18px">
+     <h3>${done===c.stages.length?'🎓 Ready for exam level':'Then: exam-level practice'}</h3>
+     <p class="lm-small" style="margin:4px 0 12px">${c.exam.text}</p>
+     <button class="btn ${done===c.stages.length?'btn-primary':''}" id="lmExamGo" onclick="lmExam(${ci})">
+       ${done===c.stages.length?c.exam.label:'Skip ahead: '+c.exam.label.toLowerCase()}</button>
+   </div>`;
+  window.scrollTo(0,0);
+}
+function lmExam(ci){ lmLeave(); LM.cfg.courses[ci].exam.go(); }
+
+function lmStart(ci, si){ LM.L = {c:ci, s:si, k:0, ans:{}, sel:{}, shuf:{}, calc:null, calcKey:null}; lmRender(); }
+function lmKey(){ return LM.L.c+'_'+LM.L.s+'_'+LM.L.k; }
+
+function lmRender(){
+  const L = LM.L, course = LM.cfg.courses[L.c], st = course.stages[L.s], sc = st.screens[L.k];
+  const total = st.screens.length, key = lmKey();
+  let body = '';
+  if(sc.type==='explain' || sc.type==='example'){ body = sc.html; L.ans[key] = true; }
+
+  if(sc.type==='calc'){
+    if(!L.calc || L.calcKey!==key){ L.calc = sc.gen(); L.calcKey = key; }
+    const c = L.calc;
+    body = `<h2>${sc.title || 'Your turn'}</h2>
+      <p>${sc.lead || 'Easy numbers, fresh every time. Work it out, then check — and use <b>New numbers</b> to go again.'}</p>
+      ${c.intro}
+      ${c.fields.map((f,j)=>`<div class="lm-row" id="lmr${j}"><label for="lmi${j}">${f.label}</label>
+        <input id="lmi${j}" inputmode="decimal" autocomplete="off" onkeydown="if(event.key==='Enter')lmCheckCalc()">
+        <span class="lm-mk" id="lmm${j}"></span></div><div class="lm-fb hide" id="lmf${j}"></div>`).join('')}
+      <div class="lm-actions"><button class="btn btn-primary" onclick="lmCheckCalc()">Check</button>
+        <button class="btn" onclick="LM.L.calc=null;delete LM.L.ans[lmKey()];lmRender()">New numbers</button></div>`;
+  }
+
+  if(sc.type==='mcq'){
+    const a = L.ans[key];
+    if(!L.shuf[key]) L.shuf[key] = lmShuffle(sc.options.map((_,i)=>i));
+    body = `<h2>What does it mean?</h2><p class="lm-stem">${sc.q}</p>
+      ${L.shuf[key].map(j=>{ const o=sc.options[j]; let cls='lm-opt';
+        if(a!==undefined){ cls+=' locked'; if(o.ok) cls+=' correct'; else if(a===j) cls+=' wrong'; }
+        return `<div class="${cls}" ${a===undefined?`onclick="lmMcq(${j})"`:''}><div>${o.t}
+          ${a===j&&!o.ok&&o.why?`<div class="lm-why"><b>You picked this:</b> ${o.why}</div>`:''}</div></div>`; }).join('')}
+      ${a!==undefined?`<div class="lm-res ${sc.options[a].ok?'good':'poor'}"><b>${sc.options[a].ok?'Exactly right.':'Not quite.'}</b><div class="lm-exp">${sc.explain}</div></div>`:''}`;
+  }
+
+  if(sc.type==='sort'){
+    if(!L.shuf[key]) L.shuf[key] = lmShuffle(sc.items.map((_,i)=>i));
+    const sel = L.sel[key] || (L.sel[key]={}), checked = L.ans[key];
+    let right = 0;
+    body = `<h2>Sort them</h2><p class="lm-stem">${sc.q}</p>
+      ${L.shuf[key].map(i=>{ const it=sc.items[i], s=sel[i], ok=checked && s===it.ans; if(ok) right++;
+        return `<div class="lm-sort ${checked?(ok?'ok':'bad'):''}"><div class="lm-sort-t">${it.t}</div>
+          <div class="lm-chips">${sc.cats.map(cat=>{ let cls='lm-chip';
+            if(s===cat) cls+=' on'; if(checked&&cat===it.ans) cls+=' right'; if(checked&&s===cat&&cat!==it.ans) cls+=' wrongc';
+            return `<button class="${cls}" ${checked?'disabled':''} onclick="lmSort(${i},'${cat.replace(/'/g,"\\'")}')">${cat}</button>`; }).join('')}</div>
+          ${checked?`<div class="lm-sort-why">${ok?'✓':'✗ <b>'+it.ans+'.</b>'} ${it.why}</div>`:''}</div>`; }).join('')}
+      ${checked?`<div class="lm-res ${right===sc.items.length?'good':(right?'part':'poor')}"><b>${right} of ${sc.items.length} correct.</b></div>`
+        :`<div class="lm-actions"><button class="btn btn-primary" onclick="lmCheckSort()">Check</button></div>`}`;
+  }
+
+  const last = L.k===total-1, canNext = (key in L.ans);
+  const wait = {calc:'Check your answers to continue', mcq:'Pick an answer to continue', sort:'Sort every item, then check'}[sc.type];
+  const r = document.getElementById('lm');
+  r.innerHTML = `
+   <button class="btn btn-sm" onclick="lmCourse(${L.c})" style="margin-bottom:14px">← ${course.title}</button>
+   <div class="lm-head"><span class="lm-qnum">${st.icon} ${st.title}</span><span class="lm-count">${L.k+1} / ${total}</span></div>
+   <div class="lm-progress"><div style="width:${(L.k+1)/total*100}%"></div></div>
+   <div class="lm-card lm-body">${body}</div>
+   <div class="lm-actions" id="lmNav">
+     ${L.k>0?'<button class="btn" onclick="LM.L.k--;lmRender()">Back</button>':''}
+     <button class="btn btn-primary" ${canNext?'':'disabled'} onclick="${last?'lmFinish()':'LM.L.k++;lmRender()'}">${last?'Finish stage ✓':'Next →'}</button>
+     ${!canNext&&wait?`<span class="lm-wait">${wait}</span>`:''}</div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function lmParse(v){
+  const c = String(v||'').replace(/[,£%\s]/g,'').replace(/:1$/,'').replace(/^\((.*)\)$/,'-$1');
+  return c==='' ? NaN : Number(c);
+}
+function lmCheckCalc(){
+  const c = LM.L.calc; let blank = 0;
+  c.fields.forEach((f,j)=>{
+    const v = lmParse(document.getElementById('lmi'+j).value);
+    const row=document.getElementById('lmr'+j), mk=document.getElementById('lmm'+j), fb=document.getElementById('lmf'+j);
+    if(isNaN(v)){ blank++; return; }
+    const tol = f.tol!=null ? f.tol : 0.5;
+    const ok = Math.abs(v-f.ans) <= tol;
+    row.className='lm-row '+(ok?'ok':'bad'); mk.textContent=ok?'✓':'✗'; mk.className='lm-mk '+(ok?'ok':'bad');
+    fb.classList.remove('hide');
+    if(ok) fb.innerHTML = '<span class="lm-okc">✓</span> '+f.show;
+    else {
+      const trap = (f.traps||[]).find(t=>Math.abs(v-t.v) <= Math.max(tol, 0.5));
+      fb.innerHTML = (trap?'⚠️ '+trap.m+'<br>':'')+'The working: '+f.show;
+    }
+  });
+  if(blank===c.fields.length){ LM.cfg.toast('Enter your answers first'); return; }
+  LM.L.ans[lmKey()] = true;
+  const b = document.querySelector('#lmNav .btn-primary'); if(b) b.disabled = false;
+  document.querySelectorAll('#lmNav .lm-wait').forEach(x=>x.remove());
+}
+function lmMcq(j){ LM.L.ans[lmKey()] = j; lmRender(); }
+function lmSort(i, cat){ LM.L.sel[lmKey()][i] = cat; lmRender(); }
+function lmCheckSort(){
+  const L=LM.L, sc=LM.cfg.courses[L.c].stages[L.s].screens[L.k];
+  if(Object.keys(L.sel[lmKey()]||{}).length < sc.items.length){ LM.cfg.toast('Sort every item first'); return; }
+  L.ans[lmKey()] = true; lmRender();
+}
+function lmFinish(){
+  const L=LM.L, course=LM.cfg.courses[L.c], p=lmProg();
+  p[course.stages[L.s].id] = true; LM.cfg.persist();
+  const next = L.s+1, ci = L.c;
+  if(next < course.stages.length){ LM.cfg.toast('Stage complete — on to '+course.stages[next].title); lmStart(ci, next); }
+  else { LM.cfg.toast(course.title+' complete'); lmCourse(ci); }
+}
+
+/* ===== AA scenario-question courses — one per answer pattern ===== */
+const SC_COURSES = [
+ {id:'how', title:'How scenario questions work', icon:'🧭', wb:'All workbooks',
+  blurb:'What Q9–Q12 look like, what each verb asks for, how marks are earned, and the tables you\u2019ll be asked to fill.',
+  exam:{label:'Try a first practice question', text:'Start with the payables question — short, and it shows the whole method.', go:()=>scOpenCase('payables')},
+  stages:[{id:'sc-how', title:'Reading the question', icon:'📖', screens:[
+   {type:'explain', html:`
+    <h2>Four questions, 15 marks each</h2>
+    <p>Questions 9–12 are worth <b>60% of the paper</b>. Each is a scenario followed by two to four requirements — for example 2 + 6 + 3 + 4 marks. They are <b>written</b> answers.</p>
+    <p>Three things decide your mark:</p>
+    <table class="lm-tbl">
+     <tr><td><b>Points, not paragraphs</b></td><td>Mark schemes award marks per relevant point — "up to 2 marks for each well explained point", or "0.5 marks for each, maximum 4". Six marks for "six indicators" means about one mark each.</td></tr>
+     <tr><td><b>The scenario</b></td><td>"With reference to the scenario" means each point must use a fact from the case. A textbook point with no link to the scenario earns little.</td></tr>
+     <tr><td><b>The table</b></td><td>Many requirements say "answers should be provided in the following tabular format". Use the columns given.</td></tr>
+    </table>
+    <div class="lm-tip"><b>A useful thing about the model answers:</b> they often list more points than the question asks for — "only THREE asked for" — so any reasonable selection scores. Pick your strongest and stop.</div>
+    <p class="lm-sub">Time: about 22½ minutes per question (150 minutes ÷ 100 marks × 15 — my calculation, not a CIPFA figure).</p>`},
+   {type:'explain', html:`
+    <h2>Read the verb first</h2>
+    <p>Your writing-pattern notes put it well: read the verb and shape the answer to match.</p>
+    <table class="lm-tbl">
+     <tr><td><b>Define / State</b></td><td>Give the term or point precisely. Short.</td></tr>
+     <tr><td><b>Identify</b></td><td>Name the issue, pointing to the fact in the scenario.</td></tr>
+     <tr><td><b>Describe</b></td><td>Say what it is or what is done, in enough detail for someone to do it.</td></tr>
+     <tr><td><b>Explain</b></td><td>Say <i>why</i> — the cause and the consequence. This is where most marks are.</td></tr>
+     <tr><td><b>Recommend</b></td><td>Say what should be done, specifically enough to act on.</td></tr>
+    </table>
+    <div class="lm-tip good"><b>Identify and explain</b> is the most common combination. Every point has two halves: the fact from the scenario, and why it matters. Missing the "why" is the usual way to lose half the marks.</div>`},
+   {type:'sort', q:'Which verb is each answer responding to?', cats:['Identify','Explain','Recommend'], items:[
+     {t:'"The Sales Ledger Clerk has kept administrator access from a previous role."', ans:'Identify', why:'Names the issue from the scenario, nothing more.'},
+     {t:'"This allows unrestricted posting and deletion, so transactions could be changed or hidden without detection."', ans:'Explain', why:'Says why the issue matters — the consequence.'},
+     {t:'"Access rights should be removed and reviewed regularly so users only hold access their current role needs."', ans:'Recommend', why:'Says what should be done.'},
+     {t:'"Invoices are not marked as paid after a bank transfer."', ans:'Identify', why:'States the fact.'},
+     {t:'"So invoices may be paid twice in error, reducing cash until recovered."', ans:'Explain', why:'Gives the consequence.'}]},
+   {type:'mcq', q:'A requirement says: "With reference to the scenario, identify and explain SIX indicators that may affect the company\u2019s ability to continue as a going concern (6 marks)." What does a full-mark point look like?',
+    options:[
+     {t:'A fact from the scenario plus why it threatens the company\u2019s cash flow or survival', ok:true},
+     {t:'A list of six general going-concern indicators from the textbook', why:'Without links to the scenario, generic points earn little. "With reference to the scenario" is the instruction.'},
+     {t:'One long paragraph covering everything', why:'Markers look for six distinct points. One paragraph makes them hard to find and easy to repeat.'},
+     {t:'Six facts copied from the scenario', why:'That\u2019s only half of each point \u2014 "explain" needs the why.'}],
+    explain:'Fact + why, six times. The June 2026 model answer does exactly that for each indicator.'}
+  ]}]},
+
+ {id:'ethics', title:'Ethics threats and safeguards', icon:'⚖️', wb:'Workbook 2',
+  blurb:'Your six-step pattern, the Ethical Standard sections, and the Threat | Risk | Safeguard table.',
+  exam:{label:'Practise the Perfect School Academy question', text:'December 2023 Q12a — the full 10-mark ethics table.', go:()=>scOpenCase('school')},
+  stages:[
+  {id:'sc-eth1', title:'The six-step pattern', icon:'🪜', screens:[
+   {type:'explain', html:`
+    <h2>Your own pattern, from Session 2</h2>
+    <table class="lm-tbl">
+     <tr><td><b>1. Spot the trigger</b></td><td>Which fact in the scenario causes the problem? A gift, a relative, shares, a former job, a fee.</td></tr>
+     <tr><td><b>2. Name the principle</b> (ICPOP)</td><td>Usually objectivity or integrity — but check the others.</td></tr>
+     <tr><td><b>3. Name the threat</b> (PASSIF-M)</td><td>Own gain, own work, pressure, closeness, one-sided promotion, political, management.</td></tr>
+     <tr><td><b>4. Link to the facts</b></td><td>One sentence: why <i>this</i> scenario creates <i>that</i> threat. <b>This is where marks are won.</b></td></tr>
+     <tr><td><b>5. Safeguard or action</b></td><td>Decline, disclose, tell the manager, follow firm policy, or step aside.</td></tr>
+     <tr><td><b>6. Conclude</b></td><td>One line: the action protects the principle.</td></tr>
+    </table>
+    <p>When the question cites the <b>Ethical Standard</b>, use the four-part shape from slide 18: <b>name the ES section → state the rule → apply it to the facts → give the outcome.</b></p>
+    <div class="lm-tip">Match the pattern to the verb. "Describe the principles" wants steps 1–4; "what action should be taken" makes step 5 the main part.</div>`},
+   {type:'example', html:`
+    <h2>One row from the December 2023 model answer</h2>
+    <table class="lm-tbl">
+     <tr><th>Identification</th><th>Risk and assessment</th><th>Safeguards</th></tr>
+     <tr><td>The Audit Partner has been in place for <b>five years</b>. This creates a <b>familiarity</b> threat.</td>
+       <td><b>ES 3</b> Long association: partners are prohibited from auditing the same body for more than five years, or returning for a further five. Without the cooling-off period, his objectivity may be compromised — he may be overly sympathetic to the client.</td>
+       <td>He should not return until at least five years have passed. This year's audit should be handed to <b>another partner</b>.</td></tr>
+    </table>
+    <p>See the pattern: <b>trigger</b> (five years) → <b>threat</b> (familiarity) → <b>ES section and rule</b> → <b>link</b> (overly sympathetic) → <b>safeguard</b> (another partner).</p>
+    <div class="lm-tip good"><b>When nothing works:</b> two rows in the same model answer say "there is <b>no safeguard</b> available to reduce this threat to an acceptable level" — and conclude the person must not be on the team. Saying that clearly earns the mark.</div>`},
+   {type:'sort', q:'Which Ethical Standard section applies?', cats:['ES 1 General','ES 2 Relationships','ES 3 Long association','ES 4 Fees and remuneration'], items:[
+     {t:'An audit partner has led the audit for five years, albeit at different firms', ans:'ES 3 Long association', why:'Revision answer A11: five-year rotation, so he should stand down.'},
+     {t:'A team member takes a 1% car loan from the client — available to the general public on normal terms', ans:'ES 2 Relationships', why:'Loans are prohibited unless it is the client\u2019s normal business on normal terms — so this one is allowed.'},
+     {t:'The firm offers a bonus to staff who sell non-audit services to the client', ans:'ES 4 Fees and remuneration', why:'Incentivising the team to sell non-audit services is a breach — the offer should be withdrawn.'},
+     {t:'A former employee of the audited body is placed on its audit within two years', ans:'ES 2 Relationships', why:'ES 2 prohibits any involvement in auditing an old employer for two years.'},
+     {t:'Audits must be conducted with integrity, objectivity and independence', ans:'ES 1 General', why:'The general requirement \u2014 cited in the model answer for the nephew joining the team.'}]}
+  ]},
+  {id:'sc-eth2', title:'Safeguards and when there are none', icon:'🛡️', screens:[
+   {type:'explain', html:`
+    <h2>Safeguards</h2>
+    <p>Workbook 2: safeguards remove a threat or reduce it to an acceptable level. Two primary sources: <b>those created by the profession, legislation or regulation</b>, and <b>those in the work environment</b>.</p>
+    <p>Typical actions in model answers: decline the gift or offer; remove the person from the team; hand the engagement to another partner; tell the client it is a requirement and avoid the commitment; follow the firm's policy; escalate to the manager or the audit committee.</p>
+    <div class="lm-tip">ES 1: an appointment should not be accepted or continued where threats can't be eliminated or reduced to an acceptable level. If near the end of the audit the threats haven't been managed, the auditor cannot report and must resign.</div>`},
+   {type:'mcq', q:'The client\u2019s Head of Finance asks for her nephew to join the audit team. What does the December 2023 model answer conclude?',
+    options:[
+     {t:'No safeguard can reduce the threat to an acceptable level, so the nephew must not be on the team', ok:true},
+     {t:'He can join if a senior reviews his work', why:'Review reduces some risks, but the model says plainly no safeguard is enough \u2014 he could be pressured, or collude.'},
+     {t:'He can join because he has just passed his audit exams', why:'Competence isn\u2019t the issue. The relationship is.'},
+     {t:'He can join if the client agrees in writing', why:'The client\u2019s agreement doesn\u2019t remove the self-interest threat.'}],
+    explain:'The model links it to the facts: the nephew may come under pressure from his aunt to present things positively, or hide anything negative.'}
+  ]}]},
+
+ {id:'assert', title:'Assertions and substantive procedures', icon:'🔬', wb:'Workbooks 4–5',
+  blurb:'Pair each assertion with a procedure that actually tests it — and test in the right direction.',
+  exam:{label:'Practise the payables question', text:'December 2023 Q9a — four assertions, a procedure for each.', go:()=>scOpenCase('payables')},
+  stages:[{id:'sc-ass1', title:'Assertion → procedure', icon:'🎯', screens:[
+   {type:'explain', html:`
+    <h2>A procedure must test a specific assertion</h2>
+    <p>For a balance, the assertions are: <b>existence</b> · <b>rights and obligations</b> · <b>completeness</b> · <b>accuracy, valuation and allocation</b> · <b>classification</b> · <b>presentation</b>.</p>
+    <p>A procedure that scores names <b>what you do</b>, <b>to what</b>, and <b>why</b>:</p>
+    <div class="lm-formula">"<b>Select a sample</b> of year-end payables and <b>agree them to supplier invoices</b> to confirm the amounts <b>were owed at the year end</b>." → existence</div>
+    <h3 style="margin:14px 0 6px">Direction matters</h3>
+    <table class="lm-tbl">
+     <tr><td><b>Existence</b> (is it real?)</td><td>Start <b>from the ledger</b>, go out to the evidence</td></tr>
+     <tr><td><b>Completeness</b> (is anything missing?)</td><td>Start <b>outside the ledger</b> — after-date payments, supplier statements, GRNs — and trace <b>into</b> it</td></tr>
+    </table>
+    <p class="lm-sub">The December 2023 model tests payables completeness by selecting <b>large payments made after the year end</b> and checking whether they should have been in the balance.</p>`},
+   {type:'sort', q:'Which assertion does each procedure test? (From the December 2023 and June 2026 model answers.)', cats:['Existence','Completeness','Rights and obligations','Valuation','Cut-off','Occurrence'], items:[
+     {t:'Select large payments made after the year end and check whether they should have been in year-end payables', ans:'Completeness', why:'Starts outside the ledger to find missing liabilities.'},
+     {t:'Agree a sample of year-end payables to invoices addressed to the client', ans:'Rights and obligations', why:'Confirms the amounts were owed by this organisation.'},
+     {t:'Physically inspect assets selected from the non-current asset register', ans:'Existence', why:'Starts from the register and checks the asset is really there.'},
+     {t:'Inspect assets\u2019 condition for damage that may need an impairment', ans:'Valuation', why:'Damage affects the carrying amount.'},
+     {t:'Test additions and disposals either side of the year end for the correct period', ans:'Cut-off', why:'Is each item in the right period?'},
+     {t:'Agree a sample of additions to purchase invoices and capital expenditure authorisations', ans:'Occurrence', why:'Did the transactions really happen in the year?'}]}
+  ]}]},
+
+ {id:'controls', title:'Internal controls', icon:'🔐', wb:'Workbooks 4 and 7',
+  blurb:'Control objective → control activity → test of control; deficiency → implication → recommendation; and who to tell.',
+  exam:{label:'Practise the Fossa Ltd question', text:'June 2026 Q9 — purchases deficiencies and recommendations.', go:()=>scOpenCase('fossa')},
+  stages:[
+  {id:'sc-ic1', title:'Objectives, activities and tests', icon:'🧱', screens:[
+   {type:'explain', html:`
+    <h2>Three linked ideas</h2>
+    <div class="lm-formula"><b>Control objective</b> — the aim or purpose of a particular aspect of controls; control objectives relate to the risks that controls seek to mitigate (June 2026 model)</div>
+    <p class="lm-sub">Phrase them "To ensure that…": all purchases are recorded (completeness); at correct amounts (accuracy); only for goods ordered and received (occurrence); in the correct period (cut-off); in the right accounts (classification).</p>
+    <div class="lm-formula"><b>Control activity</b> — the thing the organisation actually does, and why it helps</div>
+    <div class="lm-formula"><b>Test of control</b> — how the auditor checks it really operated: usually "select a sample… and inspect for evidence of…"</div>
+    <div class="lm-work"><b>December 2025 model row:</b><br>Control: rental agreements are authorised by the Property Manager and approved by the Director of Finance before occupancy — reducing the risk of unauthorised agreements.<br>Test: select a sample of agreements and inspect for signatures or digital approval from <b>both</b>.</div>
+    <h3 style="margin:14px 0 6px">For a weakness</h3>
+    <p><b>Deficiency → implication → recommendation.</b> The June 2026 model: invoices aren't marked as paid → they may be paid twice → mark invoices as paid, with a stamp or payment reference, when payment is made.</p>`},
+   {type:'sort', q:'Control objective, control activity, or test of control?', cats:['Control objective','Control activity','Test of control'], items:[
+     {t:'To ensure that all rental income that should be recorded is recorded', ans:'Control objective', why:'An aim, phrased "to ensure that…".'},
+     {t:'All prospective tenants are credit checked before an agreement is signed', ans:'Control activity', why:'What the council actually does.'},
+     {t:'Select a sample of tenant files and inspect for a credit check dated before the agreement', ans:'Test of control', why:'How the auditor checks the control operated.'},
+     {t:'To ensure that purchases are recorded in the correct accounting period', ans:'Control objective', why:'The cut-off objective.'},
+     {t:'Changes to rental terms are updated by a separate member of the finance team', ans:'Control activity', why:'A segregation-of-duties control.'}]}
+  ]},
+  {id:'sc-ic2', title:'Deficiencies and who to tell (ISA 265)', icon:'📣', screens:[
+   {type:'explain', html:`
+    <h2>Two types of deficiency</h2>
+    <table class="lm-tbl">
+     <tr><td><b>Badly designed</b></td><td>The control can't prevent, or detect and correct, misstatements even when performed as intended — "inherently weak". E.g. a clerk keeps administrator access from a previous role.</td></tr>
+     <tr><td><b>Missing or not working</b></td><td>A necessary control isn't implemented effectively or consistently. E.g. bank reconciliations not reviewed during the director's sick leave.</td></tr>
+    </table>
+    <div class="lm-formula"><b>Significant deficiency</b> — a deficiency, or combination, that in the auditor's professional judgement is important enough to merit the attention of those charged with governance</div>
+    <p>Matters the auditor weighs: the likelihood of future material misstatement; susceptibility to loss or fraud; the amounts exposed; the volume of activity; the importance of the control to financial reporting; the cause and frequency of exceptions.</p>
+    <p><b>Who to tell:</b> significant deficiencies go to <b>TCWG and management</b>; others to <b>management</b>; trivial ones perhaps not at all.</p>`},
+   {type:'sort', q:'March 2026 Genet Ltd: who should each deficiency be reported to?', cats:['TCWG and management','Management only','TCWG'], items:[
+     {t:'Count sheets missing or altered; a £3,000 theft of goods', ans:'TCWG and management', why:'A financial loss and control failure \u2014 significant.'},
+     {t:'Sales Ledger Clerk keeps administrator access from a prior role', ans:'TCWG and management', why:'Potential for misstatement or fraud \u2014 significant.'},
+     {t:'Two bank reconciliations not reviewed during the FD\u2019s sick leave', ans:'Management only', why:'A non-recurring lapse.'},
+     {t:'A duplicate £75 mileage claim paid', ans:'Management only', why:'Trivial \u2014 management, if at all.'},
+     {t:'Internal audit reports not discussed by the board since August', ans:'TCWG', why:'A control-environment and oversight issue for those charged with governance.'}]}
+  ]}]},
+
+ {id:'evidence', title:'Audit evidence', icon:'🔎', wb:'Workbook 5',
+  blurb:'Ranking reliability, matching evidence to assertions, and handling evidence that doesn\u2019t agree.',
+  exam:{label:'Practise the Nesokia Ltd question', text:'June 2026 Q10 — rank four items of evidence and link each to an assertion.', go:()=>scOpenCase('nesokia')},
+  stages:[{id:'sc-ev1', title:'Reliability and inconsistencies', icon:'⚖️', screens:[
+   {type:'explain', html:`
+    <h2>Ranking evidence — the June 2026 model's rule</h2>
+    <table class="lm-tbl">
+     <tr><td><b>1. Obtained directly by the auditor</b></td><td>Most reliable — e.g. the auditor agreeing figures to the prior-year statements</td></tr>
+     <tr><td><b>2. From independent third parties</b></td><td>E.g. a bank confirmation</td></tr>
+     <tr><td><b>3. Internally generated, documentary</b></td><td>E.g. a valuation by the company's own surveyor — <i>management's</i> expert, not the auditor's</td></tr>
+     <tr><td><b>4. Oral</b></td><td>Least reliable — e.g. the finance director saying there were no disposals</td></tr>
+    </table>
+    <h2 style="margin-top:16px">Evidence that doesn't agree</h2>
+    <p>December 2025 Q10 asked you to spot <b>inconsistencies</b> and explain what they imply. The pattern: <b>what conflicts with what → what it might mean</b> (error, cut-off problem, management override, unreliable inquiry) → <b>what you'd do to resolve it</b>.</p>
+    <div class="lm-work">GRNs show goods arrived <b>before</b> the year end, but the invoices are recorded <b>next</b> year → a <b>cut-off</b> error understating liabilities.</div>`},
+   {type:'sort', q:'Where does each sit on the reliability scale?', cats:['Auditor\u2019s own work','Third party','Internal document','Oral'], items:[
+     {t:'The auditor recalculates the depreciation charge', ans:'Auditor\u2019s own work', why:'Obtained directly by the auditor.'},
+     {t:'A bank confirmation sent directly to the auditor', ans:'Third party', why:'From an independent third party.'},
+     {t:'A valuation report by the company\u2019s own surveyor', ans:'Internal document', why:'Management\u2019s expert \u2014 documentary but not independent.'},
+     {t:'The finance director tells you there were no disposals', ans:'Oral', why:'Spoken, and from management \u2014 the least reliable.'}]}
+  ]}]},
+
+ {id:'gc', title:'Going concern', icon:'⏳', wb:'Workbook 6',
+  blurb:'Spotting indicators in a scenario, the procedures that test them, and the effect on the report.',
+  exam:{label:'Practise the Makalata Ltd question', text:'June 2026 Q11 — the full 15-mark going concern question.', go:()=>scOpenCase('makalata')},
+  stages:[{id:'sc-gc1', title:'Indicators, procedures and reporting', icon:'🚦', screens:[
+   {type:'explain', html:`
+    <h2>Material uncertainty</h2>
+    <div class="lm-formula">A <b>material uncertainty related to going concern</b> arises when events or conditions, individually or together, cast significant doubt on the entity's ability to continue as a going concern — material where the likelihood and potential impact require disclosure of its nature and implications (June 2026 model)</div>
+    <h3 style="margin:14px 0 6px">Indicator pattern: fact → why it threatens survival</h3>
+    <div class="lm-work">"A major customer owing £567,000 has issued a notice of financial difficulty" → the cash may never arrive, and unless the customer is replaced future revenue and cash flow fall.</div>
+    <h3 style="margin:14px 0 6px">Procedure pattern: match each indicator</h3>
+    <p>Loss of a customer → review the post-year-end order book. Missed loan repayment → review the loan agreement and confirm the missed payment to the bank statement. Negative cash flow → obtain the cash flow forecast and test its assumptions. Always: <b>written representations</b> on management's plans.</p>
+    <h3 style="margin:14px 0 6px">Reporting</h3>
+    <table class="lm-tbl">
+     <tr><td>Adequately disclosed</td><td>A <b>"Material uncertainty related to going concern"</b> section; opinion not modified</td></tr>
+     <tr><td>Not adequately disclosed</td><td><b>Qualified or adverse</b> opinion</td></tr>
+     <tr><td>Going concern basis inappropriate</td><td><b>Adverse</b></td></tr>
+    </table>`},
+   {type:'sort', q:'Going concern indicator — or not?', cats:['Indicator','Not an indicator'], items:[
+     {t:'A major customer owing a large sum warns it can\u2019t meet its spending', ans:'Indicator', why:'Loss of cash and future revenue.'},
+     {t:'A key director has left and hasn\u2019t been replaced', ans:'Indicator', why:'Future sales may fall, and customers may follow the director.'},
+     {t:'Pension contributions have been delayed to save cash', ans:'Indicator', why:'A sign of cash shortage, with regulatory risk.'},
+     {t:'The bank has agreed a new loan on lower repayments', ans:'Not an indicator', why:'That would <b>ease</b> the pressure \u2014 it\u2019s a mitigating factor.'},
+     {t:'A loan repayment was missed and the bank threatens immediate repayment', ans:'Indicator', why:'A covenant breach could make the whole loan due.'}]}
+  ]}]},
+
+ {id:'ia', title:'Internal audit investigations', icon:'🕵️', wb:'Workbook 7',
+  blurb:'Types of irregularity, the principles investigators must apply, and objectives paired with actions.',
+  exam:{label:'Practise the whistleblowing question', text:'June 2026 Q12 — irregularity types, principles and an objectives table.', go:()=>scOpenCase('whistle')},
+  stages:[{id:'sc-ia1', title:'Irregularities and investigations', icon:'🔦', screens:[
+   {type:'explain', html:`
+    <h2>Irregularity</h2>
+    <p>Workbook 7: any action that, intentionally or unintentionally, misstates or distorts information — usually for personal or organisational advantage.</p>
+    <table class="lm-tbl">
+     <tr><td><b>Errors</b></td><td>Unintentional mistakes — data entry, calculation, misunderstood procedures</td></tr>
+     <tr><td><b>Non-compliance</b></td><td>Not following policies, laws, regulations or standards</td></tr>
+     <tr><td><b>Misappropriation of assets</b></td><td>Theft or misuse of cash, inventory or property</td></tr>
+     <tr><td><b>Fraud</b></td><td>Intentional deception for advantage — e.g. overstating revenue</td></tr>
+     <tr><td><b>Corruption</b></td><td>Abusing a position of trust — e.g. bribes for contracts</td></tr>
+     <tr><td><b>Money laundering</b></td><td>Disguising the criminal origin of funds</td></tr>
+    </table>
+    <h3 style="margin:14px 0 6px">The objective → action pattern (June 2026 model)</h3>
+    <div class="lm-work">Objective: obtain and preserve evidence that may be needed in disciplinary or criminal proceedings<br>→ Action: secure the records, keep copies of electronic evidence, and document every finding.</div>
+    <p class="lm-sub">Principles the model stresses: integrity, objectivity, confidentiality, professional competence and due care, professional scepticism, independence — each with <b>why</b> it matters in an investigation.</p>`},
+   {type:'sort', q:'Which type of irregularity?', cats:['Error','Non-compliance','Misappropriation of assets','Fraud','Corruption','Money laundering'], items:[
+     {t:'A clerk keys £1,000 as £10,000 by mistake', ans:'Error', why:'Unintentional.'},
+     {t:'Procurement rules are ignored when awarding a contract', ans:'Non-compliance', why:'Not following policy or regulation.'},
+     {t:'An employee takes stock home', ans:'Misappropriation of assets', why:'Theft of the organisation\u2019s assets.'},
+     {t:'Management deliberately overstates revenue', ans:'Fraud', why:'The June 2026 model\u2019s own example.'},
+     {t:'A manager accepts payments from a supplier in return for contracts', ans:'Corruption', why:'Abuse of a position of trust.'},
+     {t:'Criminal proceeds are moved through shell companies', ans:'Money laundering', why:'Disguising where the money came from.'}]}
+  ]}]}
+];
+
+/* ===== Practice cases — real AA scenario questions with official model answers ===== */
+const CASES = [
+/* ---------------------------------------------------------------- */
+{id:'payables', title:'Local authority payables', icon:'🔬', course:'assert', source:'December 2023 Q9a', marks:5,
+ scenario:`<p>Anushka has been tasked with conducting an audit of <b>payables (a material balance)</b> for a local authority. The Audit Partner has suggested she adopts the financial statement assertions in <i>ISA 315 Identifying and assessing the risks of material misstatement</i> as the basis for designing <b>substantive procedures</b>.</p>`,
+ steps:[
+ {kind:'spot', title:'Spot the right assertions', q:'Which of these are assertions about an account <b>balance</b> such as year-end payables? Select all that apply.',
+  options:[
+   {t:'Existence', ok:true, why:'Do the recorded liabilities really exist at the year end?'},
+   {t:'Rights and obligations', ok:true, why:'Are they genuinely owed by this organisation?'},
+   {t:'Completeness', ok:true, why:'Are all liabilities included? The key risk for payables.'},
+   {t:'Accuracy, valuation and allocation', ok:true, why:'Are they recorded at the right amounts?'},
+   {t:'Occurrence', ok:false, why:'Occurrence is a <b>transaction</b> assertion — did it happen in the period. Payables is a balance.'},
+   {t:'Authorisation', ok:false, why:'Authorisation is a <b>control</b>, not an ISA 315 assertion.'},
+   {t:'Profitability', ok:false, why:'Not an assertion at all.'}]},
+ {kind:'match', title:'Build the table', q:'Match each assertion to the substantive procedure that tests it.',
+  rows:[{t:'Existence', ans:0},{t:'Rights and obligations', ans:1},{t:'Completeness', ans:2},{t:'Valuation and allocation', ans:3}],
+  choices:['Select a sample of year-end payables and agree to supporting documents such as invoices, checking the amount matches the accounts',
+   'Select a sample of year-end payables and agree to invoices to confirm the amount was owed by the organisation — e.g. the invoice is addressed to the client',
+   'Select a sample of large payments made after the year end from the bank statements and check whether they should have been included in year-end payables',
+   'Obtain a breakdown of the balance and agree a sample to invoices to confirm each amount was recorded correctly',
+   'Inspect a sample of purchase orders for evidence of approval by the budget holder'],
+  decoyWhy:{4:'That is a <b>test of control</b> on authorisation, not a substantive procedure for an assertion.'}},
+ {kind:'write', title:'Write it under exam conditions', req:'9a) State <b>FOUR</b> assertions relevant to payables and, for each, design an appropriate substantive procedure. <i>(5 marks)</i>', marks:5,
+  points:[
+   {t:'<b>Existence</b> — sample year-end payables agreed to supporting documents (e.g. invoices), amounts agreeing to the accounts', m:1.25},
+   {t:'<b>Rights and obligations</b> — sample agreed to invoices to confirm the amount was owed by the organisation (invoice addressed to the client)', m:1.25},
+   {t:'<b>Completeness</b> — large payments after the year end selected from bank statements and checked for inclusion in payables', m:1.25},
+   {t:'<b>Valuation and allocation</b> — breakdown obtained and a sample agreed to invoices to confirm amounts recorded correctly', m:1.25}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'school', title:'Perfect School Academy', icon:'⚖️', course:'ethics', source:'December 2023 Q12a', marks:10,
+ scenario:`<p><i>Abridged from December 2023 Q12.</i> 4SchoolsOnly is the audit firm. Perfect School Academy is due to merge with Aiming School Academy.</p>
+  <ul class="sc-list">
+   <li>The <b>Audit Partner has been in place for five years</b>.</li>
+   <li><b>Shona</b> joined 4SchoolsOnly eight months ago. Before that she was the <b>School Business Manager of Aiming School Academy</b>. Shona's <b>cousin</b> has recently been appointed Headteacher there.</li>
+   <li>The client's <b>Head of Finance</b> mentions that her recently qualified <b>nephew</b> has just been employed by 4SchoolsOnly, and asks whether he could work with Shona — "good to keep things within the family". The Audit Partner assures her he will join the audit team.</li>
+   <li>The Audit Partner plans to leave the firm after this year to set up his own, and asks for the chance to audit the merged entity. He proposes to handle <b>internal audit first, then the external audit</b>, at a fee <b>much lower</b> than other firms charge.</li>
+   <li>The school has a recent outstanding rating, and the Head of Finance wants consistency given current challenges in education.</li>
+  </ul>`,
+ steps:[
+ {kind:'spot', title:'Spot the triggers', q:'Which facts create an ethical threat? Select all that apply.',
+  options:[
+   {t:'The Audit Partner has been in place for five years', ok:true, why:'Familiarity — ES 3 long association. In the model answer.'},
+   {t:'The Head of Finance\u2019s nephew is joining the audit team', ok:true, why:'Self-interest — in the model answer.'},
+   {t:'Shona was until recently the Business Manager of Aiming School Academy', ok:true, why:'Self-review and familiarity — ES 2. In the model answer.'},
+   {t:'The partner proposes doing the internal audit before the external audit', ok:true, why:'Not a row I could retrieve from the model, but a recognised threat: auditing work his own firm did is self-review, and it risks taking on management responsibilities.'},
+   {t:'The partner\u2019s proposed fee is much lower than other firms charge', ok:true, why:'Not a row I could retrieve from the model, but fees are covered by ES 4: a very low fee can create a self-interest threat and pressure on audit quality.'},
+   {t:'Shona\u2019s cousin is Headteacher at Aiming School Academy', ok:true, why:'Not a row I could retrieve from the model, but a close family relationship at the client creates a familiarity or self-interest threat.'},
+   {t:'The school recently received an outstanding rating', ok:false, why:'Context only — it creates no threat to the auditor.'},
+   {t:'The nephew has just completed his audit exams', ok:false, why:'His competence isn\u2019t the issue; his relationship to the Head of Finance is.'}]},
+ {kind:'match', title:'Name the threat', q:'Match each trigger from the model answer to its threat and Ethical Standard section.',
+  rows:[{t:'Audit Partner in place for five years', ans:0},{t:'Head of Finance\u2019s nephew joins the team', ans:1},{t:'Shona audits her former employer', ans:2}],
+  choices:['Familiarity — ES 3 Long association','Self-interest — ES 1 General requirements','Self-review and familiarity — ES 2 Relationships','Advocacy — ES 5 Non-audit services','Intimidation — ES 4 Fees']},
+ {kind:'match', title:'Choose the safeguard', q:'What does the model answer say should happen?',
+  rows:[{t:'Audit Partner in place for five years', ans:0},{t:'Head of Finance\u2019s nephew joins the team', ans:1},{t:'Shona audits her former employer', ans:2}],
+  choices:['Hand this year\u2019s audit to another partner; he should not return until five years have passed',
+   'No safeguard reduces the threat enough — he must not be put on the team',
+   'No safeguard reduces the threat enough — she should not be on the team, and should ask to be removed',
+   'Allow it, provided a senior reviews their work',
+   'Disclose the relationship in the auditor\u2019s report'],
+  decoyWhy:{3:'Review reduces some risks, but the model answer says plainly there is no adequate safeguard for these.',4:'Disclosure in the report does not remove a threat to independence.'}},
+ {kind:'write', title:'Write the table under exam conditions', req:'12a) With reference to the provisions of the Ethical Standard, identify and assess the ethical threats, explaining the risks involved, and suggesting relevant safeguards, as required. Use a table: <b>Identification | Risk and assessment | Safeguards</b>. <i>(10 marks)</i>', marks:10,
+  points:[
+   {t:'Partner in place five years → <b>familiarity</b> threat', m:1},
+   {t:'<b>ES 3</b>: partners can\u2019t audit the same body for more than five years or return for a further five; objectivity may be compromised, overly sympathetic', m:1},
+   {t:'Safeguard: another partner takes this year\u2019s audit; he shouldn\u2019t return for five years and should explain it\u2019s a requirement', m:1},
+   {t:'Nephew joining the team → <b>self-interest</b> threat', m:1},
+   {t:'<b>ES 1</b> integrity, objectivity, independence: nephew may be pressured to present results positively or hide negatives; collusion risk', m:1},
+   {t:'No safeguard is adequate → nephew not put on the team', m:1},
+   {t:'Shona\u2019s former role → <b>self-review and familiarity</b> threats', m:1},
+   {t:'<b>ES 2</b>: no involvement auditing a former employer for two years; she may audit her own work, miss errors, or be reluctant to raise them', m:1},
+   {t:'No safeguard is adequate → Shona removed from the team / asks to be removed', m:1},
+   {t:'A further threat well explained with a safeguard — e.g. internal then external audit (self-review), the very low fee (ES 4), or the cousin (familiarity)', m:1}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'genet', title:'Genet Ltd — control deficiencies', icon:'📣', course:'controls', source:'March 2026 Q10', marks:15,
+ scenario:`<p>The audit plan for Genet Ltd (year ended 31 March 20X5) set materiality at <b>£200,000</b>. The interim audit found these deficiencies:</p>
+  <ol class="sc-list">
+   <li>Purchases under £10,000 can be authorised by departmental managers, but there is <b>no independent review of new supplier set-up</b> requests before payments are made.</li>
+   <li>Monthly bank reconciliations are normally reviewed by the Finance Director, but the October and November reconciliations were prepared during the Director's <b>sick leave and never reviewed</b>.</li>
+   <li>At two warehouses, several <b>count sheets were missing</b> and one had been altered without authorisation. An investigation found a <b>£3,000 theft</b> of goods.</li>
+   <li>The Sales Ledger Clerk keeps <b>administrator access</b> from a previous role, allowing unrestricted posting and deletion.</li>
+   <li>The sales system blocks dispatches over a customer's credit limit, but the <b>Sales Manager can override</b> it. One override led to a <b>£1,200</b> debt write-off.</li>
+   <li>One <b>duplicate mileage claim of £75</b> was paid; the Accountant says it was a data-entry error.</li>
+   <li><b>Internal audit reports</b> presented to the board haven't been discussed since August 20X4, and there's no follow-up on earlier recommendations.</li>
+  </ol>`,
+ steps:[
+ {kind:'match', title:'Classify each deficiency', q:'Which type of deficiency is each? (ISA 265 — following the model answer.)',
+  rows:[{t:'(1) No independent review of new supplier set-up',ans:0},{t:'(2) Bank reconciliations not reviewed during sick leave',ans:1},
+   {t:'(3) Missing and altered count sheets',ans:1},{t:'(4) Clerk keeps administrator access',ans:0},
+   {t:'(5) Credit limit can be overridden',ans:1},{t:'(6) Duplicate mileage claim paid',ans:1},{t:'(7) IA reports never followed up',ans:0}],
+  choices:['Badly designed — inherently weak even if performed as intended','Not implemented effectively or consistently']},
+ {kind:'spot', title:'What makes a deficiency significant?', q:'Which matters does the auditor consider when deciding whether a deficiency is <b>significant</b>? Select all that apply.',
+  options:[
+   {t:'The likelihood of it leading to material misstatement in future', ok:true, why:'E.g. the retained administrator access.'},
+   {t:'How susceptible the related asset is to loss or fraud', ok:true, why:'£3,000 theft and £1,200 write-off weigh more than £75.'},
+   {t:'The financial statement amounts exposed', ok:true, why:'Inventory and receivables dwarf mileage costs.'},
+   {t:'The volume of activity exposed', ok:true, why:'E.g. a high volume of purchases under £10,000.'},
+   {t:'How important the control is to financial reporting', ok:true, why:'E.g. board oversight.'},
+   {t:'The cause and frequency of the exceptions', ok:true, why:'E.g. only two reconciliations missed, due to staff absence.'},
+   {t:'Whether it was found at the interim or the final audit', ok:false, why:'When the auditor found it doesn\u2019t change how serious it is.'},
+   {t:'Whether management agrees with the finding', ok:false, why:'Management\u2019s view doesn\u2019t decide significance \u2014 the auditor\u2019s professional judgement does.'}]},
+ {kind:'match', title:'Who should be told?', q:'Match each deficiency to whom it should be communicated (model answer).',
+  rows:[{t:'(1) Supplier approvals',ans:1},{t:'(2) Bank reconciliations',ans:1},{t:'(3) Inventory counts',ans:0},{t:'(4) IT access rights',ans:0},
+   {t:'(5) Credit limit override',ans:1},{t:'(6) Expense claims',ans:2},{t:'(7) Internal audit reports',ans:3}],
+  choices:['TCWG and management — significant','Management — operational or one-off','Management, if at all — trivial','TCWG — oversight and control environment']},
+ {kind:'write', title:'Write it under exam conditions', req:'10a) Describe <b>TWO</b> types of deficiency, with an example from the scenario <i>(4)</i>. 10b) Define "significant deficiency" and give <b>THREE</b> matters the auditor considers <i>(4)</i>. 10c) For <b>EACH</b> deficiency, state and explain to whom it should be communicated, if at all — table: Deficiency | To whom | Reasoning <i>(7)</i>.', marks:15,
+  points:[
+   {t:'Type 1: a control designed so it can\u2019t prevent, or detect and correct, misstatements even when performed as intended', m:1},
+   {t:'…with a scenario example (e.g. administrator access; no supplier review; IA reports without follow-up)', m:1},
+   {t:'Type 2: a necessary control missing or not implemented effectively and consistently', m:1},
+   {t:'…with a scenario example (e.g. unreviewed reconciliations; credit override; count sheets)', m:1},
+   {t:'Significant deficiency defined: important enough, in the auditor\u2019s judgement, to merit the attention of TCWG', m:1},
+   {t:'Three matters, each linked to the scenario (likelihood; susceptibility to loss; amounts exposed; volume; importance; cause and frequency)', m:3},
+   {t:'(3) inventory and (4) IT access → TCWG and management, with reasons', m:2},
+   {t:'(7) IA reports → TCWG, as an oversight issue', m:1},
+   {t:'(1), (2), (5) → management, with reasons', m:3},
+   {t:'(6) expense claim → management if at all, as trivial', m:1}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'fossa', title:'Fossa Ltd — purchases system', icon:'🔐', course:'controls', source:'June 2026 Q9', marks:15,
+ scenario:`<p>Fossa Ltd provides road and street-lighting repair and maintenance for local authorities. Its purchases system:</p>
+  <ul class="sc-list">
+   <li>Delivery notes are checked on receipt by the warehouse. <b>Only when there is no delivery note</b> is a sequentially numbered GRN completed. A list of delivery notes and GRNs is passed to procurement for <b>checking against orders</b>.</li>
+   <li>Purchase invoices are received by <b>various departmental managers</b> and passed to procurement to check receipt and prices. Queried invoices are kept by procurement until resolved, then go to finance for recording.</li>
+   <li>Finance approves invoices for payment, but when a bank transfer is made the <b>invoice is not marked as paid</b>.</li>
+   <li>Monthly statements from major suppliers are <b>not routinely reconciled</b> to the purchase ledger; only the year-end statements are kept.</li>
+   <li>The <b>purchase ledger clerk can change supplier details</b> in the master file.</li>
+  </ul>`,
+ steps:[
+ {kind:'spot', title:'Spot the deficiencies', q:'Which are control <b>deficiencies</b>? Select all that apply.',
+  options:[
+   {t:'A GRN is only raised when there is no delivery note', ok:true, why:'Model answer: details may be missed and goods hard to match to invoices, so liabilities may not be accrued.'},
+   {t:'Goods aren\u2019t checked to orders until the paperwork reaches procurement', ok:true, why:'Model answer: unordered goods may be accepted, with costly returns later.'},
+   {t:'Invoices are received by various departmental managers', ok:true, why:'Model answer: invoices may be lost, so purchases and payables are omitted.'},
+   {t:'Invoices aren\u2019t marked as paid after a bank transfer', ok:true, why:'Model answer: invoices may be paid twice.'},
+   {t:'Supplier statements aren\u2019t reconciled to the ledger', ok:true, why:'A clear weakness in the scenario: errors and missing invoices go unnoticed.'},
+   {t:'The purchase ledger clerk can change supplier details', ok:true, why:'A clear weakness: payments could be diverted to a false bank account (compare revision question 26).'},
+   {t:'Delivery notes are checked on receipt by the warehouse', ok:false, why:'That\u2019s a control working as it should.'},
+   {t:'Procurement holds queried invoices until they\u2019re resolved', ok:false, why:'A sensible control \u2014 it stops wrong invoices being paid.'}]},
+ {kind:'match', title:'Build the table', q:'Match each deficiency to its recommendation.',
+  rows:[{t:'GRNs only when there\u2019s no delivery note',ans:0},{t:'Goods not checked to orders on arrival',ans:1},
+   {t:'Invoices received by various managers',ans:2},{t:'Invoices not marked as paid',ans:3},
+   {t:'Supplier statements not reconciled',ans:4},{t:'Clerk can change supplier details',ans:5}],
+  choices:['Raise a sequentially numbered GRN for all goods received, with a weekly sequence check',
+   'Send the warehouse a copy of the approved order; check goods against it on receipt and refuse unordered deliveries',
+   'Address all invoices to finance and record them on receipt; match to order and GRN before approving payment',
+   'Mark invoices as paid — stamp or payment reference — when payment is made',
+   'Reconcile supplier statements to the ledger monthly and investigate differences',
+   'Restrict master-file changes and require independent authorisation of every change'],
+  note:'The last two recommendations are my own reasoning from the scenario; the first four are from the official model answer.'},
+ {kind:'write', title:'Write it under exam conditions', req:'9a) Define "control objective" <i>(1)</i>. 9b) State <b>THREE</b> control objectives of a purchases system <i>(3)</i>. 9c) Identify and explain <b>FOUR</b> deficiencies and give a recommendation for each — table: Control deficiency | Recommendation <i>(8)</i>. 9d) Describe <b>THREE</b> substantive procedures for trade payables <i>(3)</i>.', marks:15,
+  points:[
+   {t:'Control objective: the aim or purpose of a particular aspect of controls, relating to the risks they mitigate', m:1},
+   {t:'Three objectives "to ensure that…" (all purchases recorded; correct amounts; only goods ordered and received; correct period; right accounts)', m:3},
+   {t:'Four deficiencies, each explained with its consequence', m:4},
+   {t:'Four matching recommendations, each specific enough to act on', m:4},
+   {t:'Three payables procedures (e.g. after-date payments for completeness; agree to invoices; supplier statement reconciliations)', m:3}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'eldc', title:'East Lynn District Council — rental income', icon:'🏢', course:'controls', source:'December 2025 Q9', marks:15,
+ scenario:`<p>East Lynn District Council has invested in commercial properties. Its main income is local taxation and government grants, but rental income is substantial.</p>
+  <ul class="sc-list">
+   <li>Properties are advertised through local agents and on the website. All prospective tenants are <b>credit checked</b>.</li>
+   <li><b>Standard rental agreements</b> set the rent, term, maintenance obligations and payment terms. Tenants pay a <b>three-month deposit</b> before occupancy, and rent monthly in advance by standing order.</li>
+   <li>Agreements are <b>authorised by the Property Manager and approved by the Director of Finance</b>. Changes are approved by the Property Manager and <b>updated by a member of the finance team</b>.</li>
+   <li>The property register is <b>reviewed monthly</b> by the Property Manager. Invoices are <b>generated automatically</b> on the first of each month.</li>
+   <li>Receipts are matched automatically; <b>unmatched payments are reviewed daily</b>. An <b>aged receivables report is reviewed monthly</b> by a senior finance officer, who chases overdue accounts.</li>
+   <li>The external auditor plans to test the operating effectiveness of controls.</li>
+  </ul>`,
+ steps:[
+ {kind:'spot', title:'Spot the control activities', q:'Which are <b>control activities</b> in the council\u2019s system? Select all that apply.',
+  options:[
+   {t:'Credit checks on all prospective tenants', ok:true, why:'Reduces the risk of tenants who default.'},
+   {t:'Standard-format rental agreements', ok:true, why:'Consistency, and no unauthorised clauses.'},
+   {t:'Authorisation by the Property Manager and approval by the Director of Finance', ok:true, why:'Prevents unauthorised agreements.'},
+   {t:'Changes updated by a separate member of the finance team', ok:true, why:'Segregation of duties.'},
+   {t:'A three-month deposit before occupancy', ok:true, why:'A safeguard against non-payment.'},
+   {t:'Daily review of unmatched receipts', ok:true, why:'Catches payments not allocated to tenants.'},
+   {t:'The council\u2019s main income is local taxation and government grants', ok:false, why:'Context, not a control.'},
+   {t:'The auditor plans to test operating effectiveness', ok:false, why:'That\u2019s the auditor\u2019s approach, not one of the council\u2019s controls.'},
+   {t:'Properties are advertised through local agents', ok:false, why:'Marketing, not a control activity.'}]},
+ {kind:'match', title:'Build the table', q:'Match each control to its test of control (model answer).',
+  rows:[{t:'Credit checks before agreements',ans:0},{t:'Standard rental agreements',ans:1},{t:'Authorisation by PM and DoF',ans:2},
+   {t:'Changes entered by a separate finance member',ans:3},{t:'Three-month deposit',ans:4}],
+  choices:['Select tenant files; inspect for a credit check dated before the agreement',
+   'Select signed agreements; confirm they follow the current template with all mandatory clauses',
+   'Select agreements; inspect for signatures or digital approval from both the Property Manager and Director of Finance',
+   'Select amendments; inspect change logs for PM approval and separate entry by finance',
+   'Select tenant files; inspect for the deposit paid and recorded before the start date',
+   'Recalculate expected rental income for the year and compare with the amount recorded'],
+  decoyWhy:{5:'That\u2019s a <b>substantive analytical procedure</b>, not a test of control.'}},
+ {kind:'write', title:'Write it under exam conditions', req:'9a) State <b>THREE</b> control objectives for rental income <i>(3)</i>. 9b) Identify and explain <b>FIVE</b> control activities and describe a test of control for <b>EACH</b> — table: Control activity | Test of control <i>(10)</i>. 9c) Describe <b>ONE</b> substantive analytical procedure for rental income <i>(2)</i>.', marks:15,
+  points:[
+   {t:'Three objectives: authorised (valid); correctly calculated (accurate); all recorded (complete); received promptly (timely); correct period (cut-off)', m:3},
+   {t:'Five control activities, each with why it helps', m:5},
+   {t:'Five matching tests of control: "select a sample… inspect for evidence of…"', m:5},
+   {t:'One analytical procedure: build an expectation (e.g. units × rent × months), compare with recorded income, investigate differences — <i>my wording; the model answer for 9c wasn\u2019t retrievable</i>', m:2}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'nesokia', title:'Nesokia Ltd — PPE evidence', icon:'🔎', course:'evidence', source:'June 2026 Q10', marks:15,
+ scenario:`<p>Nesokia Ltd's draft financial statements (year ended 31 March 20X6) include a material balance for property, plant and equipment. The audit file contains:</p>
+  <ol class="sc-list">
+   <li>A <b>bank confirmation</b> of title deeds to the head office building, held as security for a loan.</li>
+   <li>A note that the <b>finance director stated</b> there were no disposals in the year.</li>
+   <li>A <b>valuation report</b> on land and buildings by the <b>company's</b> valuation surveyor.</li>
+   <li>A schedule of cost or valuation brought forward for each class of asset, <b>agreed by the auditor</b> to the prior-year financial statements.</li>
+  </ol>`,
+ steps:[
+ {kind:'match', title:'Rank the evidence', q:'Rank the four items from most to least reliable.',
+  rows:[{t:'(1) Bank confirmation',ans:1},{t:'(2) Finance director\u2019s statement',ans:3},{t:'(3) Company surveyor\u2019s valuation',ans:2},{t:'(4) Schedule agreed by the auditor',ans:0}],
+  choices:['1st — most reliable','2nd','3rd','4th — least reliable'],
+  note:'Model order: 4, 1, 3, 2. Auditor\u2019s own work first; then the independent third party; then the internal document; oral evidence last.'},
+ {kind:'match', title:'Link each item to an assertion', q:'Which assertion does each item support (model answer)?',
+  rows:[{t:'(1) Title deeds confirmation',ans:0},{t:'(2) No disposals statement',ans:1},{t:'(3) Valuation report',ans:2},{t:'(4) Brought-forward schedule',ans:3}],
+  choices:['Rights and obligations (and existence)','Completeness','Valuation','Accuracy and completeness of opening balances','Occurrence'],
+  decoyWhy:{4:'Occurrence is about transactions happening — none of these items tests that.'}},
+ {kind:'spot', title:'Further procedures', q:'Which would give further evidence on PPE? Select all that apply.',
+  options:[
+   {t:'Physically inspect a sample of assets from the asset register', ok:true, why:'Existence.'},
+   {t:'Inspect assets for damage that may need an impairment', ok:true, why:'Valuation.'},
+   {t:'Review the repairs and maintenance account for capital items', ok:true, why:'Completeness.'},
+   {t:'Cut-off tests on additions and disposals near the year end', ok:true, why:'Cut-off.'},
+   {t:'Proof in total of the depreciation charge', ok:true, why:'Completeness and accuracy.'},
+   {t:'Agree additions to invoices and capital expenditure authorisations', ok:true, why:'Occurrence.'},
+   {t:'Ask the finance director again to confirm there were no disposals', ok:false, why:'Still oral evidence from management \u2014 the least reliable kind.'},
+   {t:'Send confirmation letters to a sample of trade receivables', ok:false, why:'Wrong balance \u2014 that tests receivables, not PPE.'}]},
+ {kind:'write', title:'Write it under exam conditions', req:'10a) Define "audit evidence" and describe the auditor\u2019s responsibility for evaluating sufficiency and appropriateness <i>(3)</i>. 10b) Rank the four items, most to least reliable, and explain <i>(5)</i>. 10c) For EACH item, identify and briefly explain ONE assertion <i>(4)</i>. 10d) Describe THREE further procedures for PPE <i>(3)</i>.', marks:15,
+  points:[
+   {t:'Definition: information used by the auditor in arriving at the conclusions on which the opinion is based', m:1},
+   {t:'Responsibility: conclude whether sufficient appropriate evidence obtained; consider all evidence, corroborating or contradicting', m:1},
+   {t:'If insufficient: seek more; if still unable → qualified opinion or disclaimer', m:1},
+   {t:'Correct order 4, 1, 3, 2', m:1},
+   {t:'Explained: auditor-obtained most reliable; independent third party next', m:2},
+   {t:'Explained: the surveyor is management\u2019s expert, but documentary beats oral; the FD\u2019s statement is least reliable', m:2},
+   {t:'One assertion per item, each briefly explained', m:4},
+   {t:'Three further PPE procedures', m:3}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'southbay', title:'South Bay Health Authority — payables', icon:'🧩', course:'evidence', source:'December 2025 Q10a (abridged)', marks:8,
+ scenario:`<p><i>Abridged from December 2025 Q10 — the issues are summarised from the model answer.</i> Ashley & Co audits the South Bay District Health Authority (year ended 31 March 20X5). Payables are processed centrally. While testing year-end trade payables, the team found:</p>
+  <ol class="sc-list">
+   <li>Several <b>year-end manual journals</b> significantly reduce payables, with no proper support — labelled only "management adjustment" or "accrual not needed" — although invoices are recorded on the suppliers' accounts.</li>
+   <li>GRNs show goods <b>delivered before the year end</b>, but the invoices are dated and recorded in the <b>next year</b>.</li>
+   <li>Payables staff say invoices were delayed because of <b>budget constraints</b>; the Procurement Manager says processing was <b>on time</b>.</li>
+   <li>Analytical procedures show payables <b>down 25%</b> on last year, despite stable activity and unchanged supplier terms.</li>
+  </ol>`,
+ steps:[
+ {kind:'match', title:'What does each inconsistency imply?', q:'Match each issue to its implication (model answer).',
+  rows:[{t:'(1) Unsupported year-end journals',ans:0},{t:'(2) Goods received before year end, invoiced after',ans:1},
+   {t:'(3) Contradictory explanations',ans:2},{t:'(4) Payables down 25%',ans:3}],
+  choices:['Risk of management override to understate payables — an ISA 240 fraud risk factor near the year end',
+   'A cut-off error: liabilities and expenses understated',
+   'Inquiry evidence is unreliable; possible concealment or weak governance',
+   'Liabilities may be incomplete or misclassified; possible bias in accrual estimates (ISA 540)',
+   'The payables balance is overstated'],
+  decoyWhy:{4:'Every issue here points to payables being <b>understated</b>, not overstated.'}},
+ {kind:'write', title:'Write it under exam conditions', req:'Identify each inconsistency in the evidence and explain its implications. <i>(Marks shown as an estimate — my copy of the requirement is abridged; about 2 marks per inconsistency.)</i>', marks:8,
+  points:[
+   {t:'Journals: inconsistent with invoices on suppliers\u2019 accounts → management override, deliberate understatement, ISA 240 fraud risk', m:2},
+   {t:'GRNs vs invoices: liabilities existing at the year end recorded next year → cut-off error, understated liabilities and expenses', m:2},
+   {t:'Contradictory inquiries → inquiry evidence unreliable; possible concealment, collusion or weak governance', m:2},
+   {t:'25% fall vs stable activity → incomplete or misclassified liabilities; management bias in estimates', m:2}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'makalata', title:'Makalata Ltd — going concern', icon:'⏳', course:'gc', source:'June 2026 Q11', marks:15,
+ scenario:`<p>Kimberley & Co is the external auditor of Makalata Ltd, a facilities maintenance and grounds services contractor.</p>
+  <p>The industry is <b>competitive</b> and the work is <b>seasonal</b>. A <b>major customer</b> — a district council owing <b>£567,000</b> — has issued a notice that its forecast income is insufficient to meet its spending. The <b>business development director has left</b> and not been replaced.</p>
+  <p>Monthly cash flow showed a <b>net outflow</b> for the last two months of the year and is <b>forecast negative</b> for next year. As a result, <b>pension contributions have been delayed</b>, and some employees are threatening to report this to the <b>pensions regulator</b>.</p>
+  <p>Makalata has <b>missed a loan repayment</b>; the bank says the <b>£4.9 million loan</b> will be repayable in full within <b>30 days</b> if any further covenant breach occurs. The directors have <b>stopped all discretionary spending</b>, including marketing, external consultants and technical staff training.</p>`,
+ steps:[
+ {kind:'spot', title:'Spot the indicators', q:'Which are going concern indicators <b>in this scenario</b>? Select all that apply.',
+  options:[
+   {t:'The major customer owing £567,000 is in financial difficulty', ok:true, why:'Lost cash, and lost future revenue unless replaced.'},
+   {t:'The business development director has left', ok:true, why:'Future sales at risk; customers may follow the director.'},
+   {t:'Net cash outflows, with a negative forecast', ok:true, why:'The company is running out of cash.'},
+   {t:'Pension contributions delayed; employees may report to the regulator', ok:true, why:'A cash-shortage sign, with regulatory and reputational risk.'},
+   {t:'A missed loan repayment; the £4.9m loan could become due within 30 days', ok:true, why:'A further breach would make the whole loan repayable.'},
+   {t:'Discretionary spending cut, including training and marketing', ok:true, why:'May lose contracts and technical staff to competitors.'},
+   {t:'A competitive, seasonal industry', ok:true, why:'Adds pressure on uneven cash flows.'},
+   {t:'The company has recently issued new shares', ok:false, why:'Not in the scenario. "With reference to the scenario" means using only its facts.'},
+   {t:'The auditor\u2019s fee has risen', ok:false, why:'Not in the scenario, and irrelevant to going concern.'}]},
+ {kind:'match', title:'Match a procedure to each indicator', q:'Which procedure best tests each indicator? (All from the model answer\u2019s list.)',
+  rows:[{t:'Major customer in difficulty',ans:0},{t:'Business development director left',ans:1},{t:'Negative cash flow forecast',ans:2},
+   {t:'Missed loan repayment',ans:3},{t:'Pensions regulator threat',ans:4}],
+  choices:['Review post-year-end sales and the order book; ask whether new customers have been won',
+   'Ask the finance director what is being done to replace the director',
+   'Obtain the cash flow forecast, test its assumptions and run a sensitivity analysis',
+   'Review the loan agreement and confirm the missed repayment to the bank statement',
+   'Review correspondence for any letters, notices or fines from the pensions regulator']},
+ {kind:'write', title:'Write it under exam conditions', req:'11a) Explain "material uncertainty related to going concern" <i>(2)</i>. 11b) With reference to the scenario, identify and explain <b>SIX</b> indicators <i>(6)</i>. 11c) Describe <b>THREE</b> audit procedures <i>(3)</i>. 11d) Explain the impact on the auditor\u2019s report if the material uncertainty is (i) adequately disclosed <i>(2)</i>; (ii) not adequately disclosed <i>(2)</i>.', marks:15,
+  points:[
+   {t:'Events or conditions, individually or together, casting significant doubt on the ability to continue as a going concern', m:1},
+   {t:'…material where likelihood and impact require disclosure of its nature and implications', m:1},
+   {t:'Six indicators, each a scenario fact plus why it threatens survival', m:6},
+   {t:'Three procedures (forecast and assumptions; sensitivity analysis; order book; loan agreement; regulator correspondence; board minutes; written representations)', m:3},
+   {t:'(i) Adequately disclosed: a "Material uncertainty related to going concern" section; opinion not modified', m:2},
+   {t:'(ii) Not adequately disclosed: a modified opinion — qualified or adverse', m:2}]}
+ ]},
+
+/* ---------------------------------------------------------------- */
+{id:'whistle', title:'A whistleblowing allegation', icon:'🕵️', course:'ia', source:'June 2026 Q12', marks:15,
+ scenario:`<p>An allegation of irregularity has been reported to Internal Audit through the organisation's <b>whistleblowing</b> arrangements.</p>`,
+ steps:[
+ {kind:'spot', title:'Types of irregularity', q:'Which of these are <b>types of irregularity</b>? Select all that apply.',
+  options:[
+   {t:'Fraud', ok:true, why:'Intentional deception for advantage.'},
+   {t:'Corruption', ok:true, why:'Abuse of a position of trust for private gain.'},
+   {t:'Money laundering', ok:true, why:'Disguising the criminal origin of funds.'},
+   {t:'Misappropriation of assets', ok:true, why:'Theft or misuse of the organisation\u2019s resources.'},
+   {t:'Non-compliance', ok:true, why:'Failing to follow policies, laws or regulations.'},
+   {t:'Errors', ok:true, why:'Workbook 7 includes unintentional errors.'},
+   {t:'Materiality', ok:false, why:'A concept for judging significance, not a type of irregularity.'},
+   {t:'Sampling risk', ok:false, why:'A risk in the auditor\u2019s method, not an irregularity.'}]},
+ {kind:'match', title:'Objectives and actions', q:'Match each investigation objective to its action (model answer).',
+  rows:[{t:'Confirm or disprove the suspected irregularity',ans:0},{t:'Obtain and preserve evidence for proceedings',ans:1},
+   {t:'Prevent further losses while it may be continuing',ans:2},{t:'Find whether control failures contributed',ans:3},
+   {t:'Decide whether to refer to the police or regulators',ans:4}],
+  choices:['Review records and supporting documents for inconsistencies, unusual transactions or missing records',
+   'Secure records, keep copies of electronic evidence, and document every finding',
+   'Recommend temporary extra controls, restricted access or closer supervision',
+   'Review procedures and evaluate whether key controls were designed and operating effectively',
+   'Consult senior management and legal advisers where evidence suggests serious fraud or crime']},
+ {kind:'write', title:'Write it under exam conditions', req:'12a) Describe <b>THREE</b> types of irregularity with <b>ONE</b> example each <i>(6)</i>. 12b) Explain the importance of <b>THREE</b> ethical or professional principles in an investigation <i>(3)</i>. 12c) Describe <b>THREE</b> objectives, each with an investigatory action — table: Objectives | Investigatory action <i>(6)</i>.', marks:15,
+  points:[
+   {t:'Three types, each described (e.g. fraud, corruption, money laundering)', m:3},
+   {t:'One realistic example for each', m:3},
+   {t:'Three principles, each with why it matters in an investigation (integrity, objectivity, confidentiality, competence, scepticism, independence)', m:3},
+   {t:'Three objectives', m:3},
+   {t:'Three matching investigatory actions', m:3}]}
+ ]}
+];
+
+/* ===================== SCENARIO TRAINER ENGINE ===================== */
+const KEY = 'aa_scenario_trainer_v1';
+let store = scLoad(), C = null, tick = null;
+function scLoad(){ try{ const r = localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return {theme:'light', learn:{}, cases:{}}; }
+function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2400); }
+function applyTheme(){ document.documentElement.setAttribute('data-theme', store.theme==='dark'?'dark':'light');
+  document.getElementById('themeBtn').textContent = store.theme==='dark'?'☀️':'🌙'; }
+function toggleTheme(){ store.theme = store.theme==='dark'?'light':'dark'; applyTheme(); persist(); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function show(id){ ['home','lm','case'].forEach(x=>document.getElementById(x).classList.toggle('hide', x!==id)); window.scrollTo(0,0); }
+function stopTimer(){ if(tick){ clearInterval(tick); tick=null; } document.getElementById('timer').classList.add('hide'); }
+
+/* ---------------- home ---------------- */
+function renderHome(){
+  stopTimer(); C = null; lmLeave(); show('home');
+  const groups = SC_COURSES.filter(c=>CASES.some(k=>k.course===c.id));
+  const done = Object.keys(store.cases).length;
+  document.getElementById('home').innerHTML = `
+    <h1>Scenario Question Trainer</h1>
+    <p class="lede">Questions 9–12 are four 15-mark scenario questions — <b>60% of the paper</b>. They're written answers, marked point by point, and many ask for a specific table. This trainer teaches the answer <b>pattern</b> for each recurring type, then lets you practise on real past-paper questions with their official model answers.</p>
+    ${lmBanner()}
+    <div class="card">
+      <h3>How each practice question works</h3>
+      <div class="howgrid">
+        <div><b>1 · Spot the points</b><span>Pick the genuine issues from a list with red herrings.</span></div>
+        <div><b>2 · Build the table</b><span>Match each issue to its response, in the exam's table format.</span></div>
+        <div><b>3 · Write it</b><span>Answer the real requirement, then self-mark against the model answer.</span></div>
+      </div>
+      <p class="small">Or choose <b>exam conditions</b> on any question: straight to writing, with a timer at 1½ minutes per mark.</p>
+    </div>
+    <h2 style="margin:20px 0 10px">Practice questions</h2>
+    ${groups.map(g=>`<div class="grp"><div class="grp-h">${g.icon} ${g.title}</div>
+      ${CASES.filter(k=>k.course===g.id).map(k=>{ const r=store.cases[k.id];
+        return `<button class="case-btn ${r?'done':''}" onclick="scOpenCase('${k.id}')">
+          <span class="cb-t"><b>${k.title}</b><span>${k.source} · ${k.marks} marks</span></span>
+          <span class="cb-s">${r?(r.best!=null?'Best '+r.best+'/'+k.marks:'Practised'):'Start →'}</span></button>`; }).join('')}</div>`).join('')}
+    <div class="card" style="margin-top:18px"><h3>About the sources</h3>
+      <p class="small" style="margin:0">Every question and model answer comes from your papers: December 2023, December 2025, March 2026 and June 2026. Where a point is my own reasoning rather than the official answer, the app says so. ${done?`You've practised ${done} of ${CASES.length} questions.`:''}</p></div>`;
+}
+
+/* ---------------- a case ---------------- */
+function scOpenCase(id){
+  lmLeave(); stopTimer();
+  const k = CASES.find(x=>x.id===id); if(!k){ toast('Question not found'); return; }
+  C = null; show('case');
+  const mins = Math.round(k.marks*1.5*10)/10;
+  document.getElementById('case').innerHTML = `
+    <button class="btn btn-sm" onclick="renderHome()" style="margin-bottom:14px">← All questions</button>
+    <h1>${k.icon} ${k.title}</h1>
+    <p class="lede">${k.source} · ${k.marks} marks</p>
+    <div class="card scen">${k.scenario}</div>
+    <div class="modes">
+      <button class="mode" onclick="scStart('${k.id}','guided')"><h3>🪜 Guided</h3>
+        <p>Spot the points, build the table, then write the answer. Best while you're learning the pattern.</p></button>
+      <button class="mode" onclick="scStart('${k.id}','exam')"><h3>⏱️ Exam conditions</h3>
+        <p>Straight to writing the real requirement, with a ${mins}-minute timer. Then self-mark.</p></button>
+    </div>`;
+}
+
+function scStart(id, mode){
+  const k = CASES.find(x=>x.id===id);
+  const steps = mode==='exam' ? k.steps.filter(s=>s.kind==='write') : k.steps;
+  C = {k, mode, steps, i:0, ans:{}, res:{}, shuf:{}, claimed:{}, endAt:null};
+  if(mode==='exam'){
+    C.endAt = Date.now() + k.marks*1.5*60*1000;
+    document.getElementById('timer').classList.remove('hide');
+    tick = setInterval(scTick, 1000); scTick();
+  }
+  scRender();
+}
+function scTick(){
+  if(!C||!C.endAt) return;
+  const left = Math.max(0, C.endAt-Date.now()), el=document.getElementById('timer');
+  el.textContent = Math.floor(left/60000)+':'+String(Math.floor(left%60000/1000)).padStart(2,'0');
+  el.classList.toggle('low', left<120000);
+  if(left===0){ clearInterval(tick); tick=null; toast('Time\u2019s up — finish your sentence, then mark it'); }
+}
+
+function scRender(){
+  const s = C.steps[C.i], key = C.i, done = key in C.res;
+  let body = '';
+  if(s.kind==='spot'){
+    if(!C.shuf[key]) C.shuf[key] = shuffle(s.options.map((_,i)=>i));
+    const sel = C.ans[key] || (C.ans[key]=[]);
+    body = `<p class="stem">${s.q}</p>` + C.shuf[key].map(i=>{ const o=s.options[i], on=sel.includes(i);
+      let cls='opt'+(on?' sel':'');
+      if(done){ cls+=' locked'; if(o.ok&&on) cls+=' correct'; else if(o.ok) cls+=' missed'; else if(on) cls+=' wrong'; }
+      return `<label class="${cls}" ${done?'':`onclick="scToggle(${i})"`}><input type="checkbox" ${on?'checked':''} ${done?'disabled':''} tabindex="-1">
+        <div class="opt-body">${o.t}${done&&(on||o.ok)?`<div class="why">${o.ok?(on?'✓ ':'Missed: '):'✗ '}${o.why}</div>`:''}</div></label>`; }).join('');
+  }
+  if(s.kind==='match'){
+    if(!C.shuf[key]) C.shuf[key] = shuffle(s.choices.map((_,i)=>i));
+    const sel = C.ans[key] || (C.ans[key]={});
+    body = `<p class="stem">${s.q}</p>` + s.rows.map((r,ri)=>{ const v=sel[ri], ok=done&&v===r.ans;
+      return `<div class="mrow ${done?(ok?'ok':'bad'):''}"><div class="mrow-t">${r.t}</div>
+        <select ${done?'disabled':''} onchange="scPick(${ri},this.value)"><option value="">— choose —</option>
+        ${C.shuf[key].map(ci=>`<option value="${ci}" ${String(v)===String(ci)?'selected':''}>${s.choices[ci]}</option>`).join('')}</select>
+        ${done&&!ok?`<div class="why">✗ The answer: <b>${s.choices[r.ans]}</b>${(s.decoyWhy&&v!=null&&s.decoyWhy[v])?'<br>'+s.decoyWhy[v]:''}</div>`:''}
+        ${done&&ok?'<div class="why">✓ Correct</div>':''}</div>`; }).join('') + (s.note&&done?`<div class="note">${s.note}</div>`:'');
+  }
+  if(s.kind==='write'){
+    const a = C.ans[key] || '';
+    body = `<div class="req">${s.req}</div>
+      <textarea id="scta" ${done||C.claimed[key]?'disabled':''} oninput="C.ans[${key}]=this.value;scActions()" placeholder="Write your answer here — use the table layout if the requirement asks for one">${a.replace(/</g,'&lt;')}</textarea>`;
+    if(C.claimed[key]){
+      const cl = C.claimed[key];
+      body += `<div class="mark-h">Model answer — tick each point you genuinely made</div>` +
+        s.points.map((p,pi)=>`<label class="mp ${cl.includes(pi)?'on':''}" ${done?'':`onclick="scClaim(${pi})"`}>
+          <input type="checkbox" ${cl.includes(pi)?'checked':''} ${done?'disabled':''} tabindex="-1">
+          <div><span class="pm">${p.m} mark${p.m===1?'':'s'}</span>${p.t}</div></label>`).join('');
+    }
+  }
+  const last = C.i===C.steps.length-1;
+  document.getElementById('case').innerHTML = `
+    <button class="btn btn-sm" onclick="scOpenCase('${C.k.id}')" style="margin-bottom:12px">← ${C.k.title}</button>
+    <div class="qhead"><span class="qnum">${C.mode==='exam'?'⏱️ Exam conditions':'Step '+(C.i+1)+' of '+C.steps.length}</span>
+      <span class="tag">${s.title}</span><span class="marks">${s.kind==='write'?s.marks+' marks':'practice'}</span></div>
+    <div class="progress"><div style="width:${(C.i+(done?1:0))/C.steps.length*100}%"></div></div>
+    <details class="card scen-mini" ${C.i===0||s.kind==='write'?'open':''}><summary>📄 The scenario</summary>${C.k.scenario}</details>
+    <div class="card">${body}<div id="res">${done?scResultLine(s,key):''}</div><div class="actions" id="acts"></div></div>`;
+  scActions();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function scResultLine(s,key){
+  const r = C.res[key];
+  if(s.kind==='write') return `<div class="fb ${r.got>=s.marks*0.7?'good':(r.got>=s.marks*0.5?'part':'poor')}"><b>You scored ${r.got} / ${s.marks}</b> on your own marking. ${r.got>=s.marks*0.5?'That\u2019s a pass on this question.':'Look at which model points you missed — they\u2019re usually the "explain why" halves.'}</div>`;
+  return `<div class="fb ${r.pct>=80?'good':(r.pct>=50?'part':'poor')}"><b>${r.pct}%</b> — ${r.pct>=80?'you\u2019ve got the points.':'read the explanations above, then try again later.'}</div>`;
+}
+function scActions(){
+  const s = C.steps[C.i], key = C.i, done = key in C.res, h = document.getElementById('acts'); if(!h) return;
+  const last = C.i===C.steps.length-1;
+  let ready = false, label = 'Check';
+  if(s.kind==='spot') ready = (C.ans[key]||[]).length>0;
+  if(s.kind==='match') ready = Object.keys(C.ans[key]||{}).length===s.rows.length;
+  if(s.kind==='write'){ if(C.claimed[key]){ ready = true; label='Record my score'; } else { ready = (C.ans[key]||'').trim().length>0; label='Mark against the model answer'; } }
+  h.innerHTML = done
+    ? `${C.i>0?'<button class="btn" onclick="C.i--;scRender()">Back</button>':''}
+       <button class="btn btn-primary" onclick="${last?'scFinish()':'C.i++;scRender()'}">${last?'See results':'Next →'}</button>`
+    : `${C.i>0?'<button class="btn" onclick="C.i--;scRender()">Back</button>':''}
+       <button class="btn btn-primary" ${ready?'':'disabled'} onclick="scCheck()">${label}</button>
+       ${s.kind==='write'&&!C.claimed[key]?'<button class="btn" onclick="scSkipWrite()">Just show me the model answer</button>':''}`;
+}
+function scToggle(i){ const a=C.ans[C.i]; const k=a.indexOf(i); if(k>-1) a.splice(k,1); else a.push(i); scRender(); }
+function scPick(ri, v){ const a=C.ans[C.i]; if(v==='') delete a[ri]; else a[ri]=Number(v); scActions(); }
+function scClaim(pi){ const cl=C.claimed[C.i]; const k=cl.indexOf(pi); if(k>-1) cl.splice(k,1); else cl.push(pi); scRender(); }
+function scSkipWrite(){ C.ans[C.i] = C.ans[C.i] || ''; C.claimed[C.i] = []; scRender(); }
+function scCheck(){
+  const s = C.steps[C.i], key = C.i;
+  if(s.kind==='spot'){
+    const sel=C.ans[key], right=s.options.filter(o=>o.ok).length;
+    const hit=sel.filter(i=>s.options[i].ok).length, wrong=sel.filter(i=>!s.options[i].ok).length;
+    C.res[key] = {pct: Math.max(0, Math.round((hit-wrong)/right*100))};
+  }
+  if(s.kind==='match'){
+    const sel=C.ans[key]; const ok=s.rows.filter((r,ri)=>sel[ri]===r.ans).length;
+    C.res[key] = {pct: Math.round(ok/s.rows.length*100)};
+  }
+  if(s.kind==='write'){
+    if(!C.claimed[key]){ C.claimed[key] = []; scRender(); return; }
+    const got = Math.min(s.marks, C.claimed[key].reduce((a,pi)=>a+s.points[pi].m,0));
+    C.res[key] = {got: Math.round(got*100)/100};
+  }
+  scRender();
+}
+function scFinish(){
+  stopTimer();
+  const k = C.k, w = C.steps.map((s,i)=>s.kind==='write'?C.res[i]:null).filter(Boolean);
+  const got = w.reduce((a,r)=>a+r.got,0);
+  const prac = C.steps.map((s,i)=>s.kind!=='write'?C.res[i]:null).filter(Boolean);
+  const pp = prac.length ? Math.round(prac.reduce((a,r)=>a+r.pct,0)/prac.length) : null;
+  const rec = store.cases[k.id] || {attempts:0, best:null};
+  rec.attempts++; if(w.length && (rec.best==null || got>rec.best)) rec.best = Math.round(got*100)/100;
+  store.cases[k.id] = rec; persist();
+  document.getElementById('case').innerHTML = `
+    <div class="card"><h1>${k.icon} ${k.title} — done</h1>
+     <div class="stats">
+      ${w.length?`<div class="stat"><b>${Math.round(got*100)/100}/${k.marks}</b><span>Written (self-marked)</span></div>`:''}
+      ${pp!=null?`<div class="stat"><b>${pp}%</b><span>Spotting &amp; tables</span></div>`:''}
+      <div class="stat"><b>${rec.attempts}</b><span>Attempts</span></div></div>
+     <p class="small">${w.length&&got>=k.marks*0.5?'Above half marks on this question — that\u2019s the pass standard.':'The model points you missed are the ones to drill — usually the "why it matters" half of each point.'}</p>
+     <div class="actions"><button class="btn btn-primary" onclick="scOpenCase('${k.id}')">Try again</button>
+      <button class="btn" onclick="renderHome()">All questions</button></div></div>`;
+  window.scrollTo(0,0);
+}
+
+lmInit({courses:SC_COURSES, hide:['home','case'], home:renderHome, store:()=>store, persist:persist, toast:toast,
+  bannerTitle:'New to scenario questions? Start here.',
+  bannerText:'Seven short courses, one per answer pattern — ethics, assertions, controls, evidence, going concern and investigations.',
+  hubIntro:'Each course teaches one answer pattern in plain English, shows a real model-answer example, and checks you\u2019ve got it — then hands you to a past-paper question that uses it.'});
+applyTheme(); renderHome();
+
+</script>
+</body>
+</html>
